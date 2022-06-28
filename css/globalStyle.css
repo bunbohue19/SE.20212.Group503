@@ -14,6 +14,7 @@ html {
 	--black-2: #3f3c3c;
 	--black-3: #5b6359;
 	--white-1: #e8e8e8;
+    --white-2: #ffffff;
 
     --font: 'Poppins';
 }
@@ -34,7 +35,7 @@ section {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1600px;
     width: 90%;
     margin: 0 auto;
 }
@@ -91,11 +92,11 @@ a {
 
 
 /* affter login  */
+/* nav bar */
 .nav {
     padding: 2rem 0;
+    background-color: var(--lightGreen-1);
 }
-
-
 
 .nav__wrapper {
     display: flex;
@@ -111,6 +112,7 @@ a {
 .nav__role__img {    
     width: 150px;
     margin-top: 1rem;
+    padding-left: 15px;
 }
 
 .nav__role__text {
@@ -137,8 +139,10 @@ a {
     margin-bottom: 2rem;
     margin-left: 2rem;
 }
+/* end nav bar */
 
 /* body */
+
 .body__wrapper {
     padding-top: 80px;
     font-size: 1.8rem;
@@ -146,9 +150,7 @@ a {
 }
 
 .body__menu li{
-    margin: 5px;
-    padding: 5px;
-    margin-top: 20px;
+    margin-bottom: 30px;
 }
 /* end body */
 

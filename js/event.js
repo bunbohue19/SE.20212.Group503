@@ -3,6 +3,10 @@ const newEventBtn = document.getElementsByClassName("body__newEvent__btn")[0]
 const newEventForm = document.querySelector(".body__newEvent")
 
 const openNewEventForm = () => {
+    var reset_input_values = document.getElementsByClassName("newEvent__input-text");
+        for (var i = 0; i < reset_input_values.length; i++) {
+        reset_input_values[i].value = '';
+        }
     newEventForm.style.display = 'block'
 }
 
@@ -18,16 +22,111 @@ const closeNewEventForm = () => {
 closeEventBtn.addEventListener('click', closeNewEventForm);
 
 // event-infor-popupf
+
+
+var listEvent = [];
+var l = [
+    {
+        eventID: 1,
+        eventName: "stay hungry 1",
+        description: "stay foolish",
+        beginTime: "may",
+        endTime: "september",
+        sale: "20%"
+    },{
+        eventID: 1,
+        eventName: "stay hungry 1",
+        description: "stay foolish",
+        beginTime: "may",
+        endTime: "september",
+        sale: "20%"
+    },{
+        eventID: 1,
+        eventName: "stay hungry 1",
+        description: "stay foolish",
+        beginTime: "may",
+        endTime: "september",
+        sale: "20%"
+    },{
+        eventID: 1,
+        eventName: "stay hungry 1",
+        description: "stay foolish",
+        beginTime: "may",
+        endTime: "september",
+        sale: "20%"
+    },{
+        eventID: 1,
+        eventName: "stay hungry 1",
+        description: "stay foolish",
+        beginTime: "may",
+        endTime: "september",
+        sale: "20%"
+    },{
+        eventID: 1,
+        eventName: "stay hungry 1",
+        description: "stay foolish",
+        beginTime: "may",
+        endTime: "september",
+        sale: "20%"
+    }
+]
+
+var showEventAPI = "http://localhost:3000/showEvent";
+const  eventItemList = document.getElementsByClassName("body__event__list")[0]
 const eventItems = document.getElementsByClassName("body__event__item")
 const closeInforPopup = document.getElementsByClassName("event__popup__done-btn")[0]
 const inforPopup = document.getElementsByClassName("body__event__popup")[0]
 
-for(let i = 0; i < eventItems.length; i++){
-    eventItems[i].addEventListener('click', () => {
-        inforPopup.style.display = 'block'
-        document.getElementsByClassName("event__popup__name")[0].innerHTML = "Name<p class='event__popup__infor'>thang</p>"
+
+fetch(showEventAPI)
+    .then(function(response){
+        return response.json();
     })
+    .then(function(showEvent){
+        listEvent = showEvent;
+        handleShowEvent();
+        handleShowEventInfor();
+    });
+
+
+
+function handleShowEvent(){
+    console.log(listEvent);
+    for(let event of listEvent){
+        eventItemList.innerHTML += ` <div class="body__event__item">
+                                    <p class="body__event__item__id">` + event.eventID + `</p>  
+                                    <a href="#" class="body__event__item__icon">
+                                        <img src="../images/event-weedings.png" alt="">
+                                    </a>
+                                    <p class="body__event__item__title">` 
+                                        + event.eventName
+                                    + `</p>
+                                </div>`
+    }
+
 }
+
+
+
+function handleShowEventInfor(){
+    for(let event of eventItems){
+        event.addEventListener('click', () => {
+            inforPopup.style.display = 'block'
+            console.log(event.firstElementChild.textContent);
+            for(eventItem of listEvent){
+                if(eventItem.eventID == event.firstElementChild.textContent){
+                    eventInfor = document.getElementsByClassName("event__popup__infor")
+                    eventInfor[0].innerHTML = eventItem.eventName
+                    eventInfor[1].innerHTML = eventItem.description
+                    eventInfor[2].innerHTML = eventItem.beginTime
+                    eventInfor[3].innerHTML = eventItem.endTime
+                    eventInfor[4].innerHTML = eventItem.sale
+                }
+            }
+        })
+    }
+}
+
 
 closeInforPopup.addEventListener('click', () => {
     inforPopup.style.display = 'none'
@@ -62,3 +161,6 @@ eventDiscount = document.getElementsByClassName("newEvent__input-text")[4].oninp
     newEvent.discount = e.target.value;
 }
 
+
+
+// test API

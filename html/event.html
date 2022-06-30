@@ -68,77 +68,47 @@
                 </div>
                 <div class="body__event">
                     <div class="body__event__list">
-                        <div class="body__event__item">
+                        <!-- <div class="body__event__item">
                             <a href="#" class="body__event__item__icon">
                                 <img src="../images/event-weedings.png" alt="">
                             </a>
                             <p class="body__event__item__title">
                                 Weedings event
                             </p>
-                        </div>
-                        <div class="body__event__item">
-                            <a href="#" class="body__event__item__icon">
-                                <img src="../images/event-weedings.png" alt="">
-                            </a>
-                            <p class="body__event__item__title">
-                                Weedings event
-                            </p>
-                        </div>
-                        <div class="body__event__item">
-                            <a href="#" class="body__event__item__icon">
-                                <img src="../images/event-weedings.png" alt="">
-                            </a>
-                            <p class="body__event__item__title">
-                                Weedings event
-                            </p>
-                        </div>
-                        <div class="body__event__item">
-                            <a href="#" class="body__event__item__icon">
-                                <img src="../images/event-weedings.png" alt="">
-                            </a>
-                            <p class="body__event__item__title">
-                                Weedings event
-                            </p>
-                        </div>
-                        <div class="body__event__item">
-                            <a href="#" class="body__event__item__icon">
-                                <img src="../images/event-weedings.png" alt="">
-                            </a>
-                            <p class="body__event__item__title">
-                                Weedings event
-                            </p>
-                        </div>
-                        <div class="body__event__item">
-                            <a href="#" class="body__event__item__icon">
-                                <img src="../images/event-weedings.png" alt="">
-                            </a>
-                            <p class="body__event__item__title">
-                                Weedings event
-                            </p>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="body__event__popup">
                         <h2>Information</h2>
                         <ul>
                             <li class="event__popup__name">
                                 Name
-                                
+                                <p class="event__popup__infor">
+
+                                </p>
                             </li>
                             <li class="event__popup__description">
                                 Description
-                                <p class="event__popup__infor">100</p>
+                                <p class="event__popup__infor">
+                                    
+                                </p>
                             </li>
                             <li class="event__popup__start">
-                                Start
-                                <p class="event__popup__infor">100</p>
+                                Start time
+                                <p class="event__popup__infor">
+                                    
+                                </p>
                             </li>
                             <li class="event__popup__end">
-                                End
-                                <p class="event__popup__infor">100</p>
+                                End time 
+                                <p class="event__popup__infor">
+                                    
+                                </p>
                             </li>
                             <li class="event__popup__sale">
-                                Sale
-                                <p class="event__popup__infor">100</p>
+                                Discount 
+                                <p class="event__popup__infor">
+                                    
+                                </p>
                             </li>
                         </ul>
                         <div class="event__popup__btn">
@@ -153,18 +123,17 @@
                     <div class="body__newEvent">
                         <ul>
                             <li class="name__event">
-                                <span>Name event</span>
+                                <span>Name</span>
                                 <input type="text" class="newEvent__input-text">
                             </li>
                             <li class="newEvent__description">
-                                <span>Event description</span>
+                                <span>Description</span>
                                 <input type="text" class="newEvent__input-text">
                             </li>
                             <div class="newEvent__poster-upload">
 								<p>Poster</p>
-								<label for="fileImage">Upload</label>
-								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg"
-									required />
+								<label for="fileImage" class=" btn primary-btn newEvent__poster-upload-label">Upload</label>
+								<input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" required style='display:none' />
 							</div>
                             <li class="newEvent__start-time">
                                 <span>Start time</span>

@@ -32,6 +32,10 @@
     color: var(--black-1);
 }
 
+.body__event__item__id {
+    display: none;
+}
+
 
 /* event popup infor */
 .body__event__popup {
@@ -64,8 +68,11 @@
 }
 
 .event__popup__infor {
-    display: inline-block;
-    padding: 5px 190px;
+    display: flex;
+    width: 410px;
+    height: 25px;
+    align-items: center;
+    padding-left: 10px;
     background-color: var(--white-2);
     color: var(--black-1);
     margin-bottom: 40px;
@@ -109,7 +116,7 @@
 }
 
 .newEvent__input-text {
-    width: 200px;
+    width: 300px;
     font-size: 1.8rem;
     padding: 10px 5px;
     display: block;
@@ -124,10 +131,17 @@
     margin-bottom: 40px;
 }
 
-.newEvent__poster-upload label {
+
+.newEvent__poster-upload-label {
     font-family: var(--font);
-    font-size: 1.8rem;
-    border-radius: 15px;
+    font-size: 1.5rem;
+    border-radius: 8px;
+    height: 30px;
+    width: 70px;
+    padding-left: 8px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
 }
 
 .newEvent__popup__btn {

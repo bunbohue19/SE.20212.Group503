@@ -16,6 +16,7 @@
     width: 250px;
     margin-left: 50px;
     margin-bottom: 50px;
+    cursor: pointer;
 }
 
 .body__event__item__icon {
@@ -42,11 +43,21 @@
     position: fixed;
     border-radius: 12px;
     top: 20%;
-    left: 35%;
-    width: 500px;
+    left: 30%;
+    width: 800px;
     background-color: var(--lightGreen-1);
     padding: 25px;
     display: none;
+}
+
+.body__event__popup__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body__event__popup__left {
+    width: 400px;
+    margin-right: 20px;
 }
 
 .body__event__popup h2{
@@ -67,18 +78,25 @@
     margin-left: 20px;
 }
 
+
 .event__popup__infor {
     display: flex;
-    width: 410px;
-    height: 25px;
+    width: 300px;
+    height: auto;
+    min-height: 40px;
     align-items: center;
     padding-left: 10px;
     background-color: var(--white-2);
     color: var(--black-1);
     margin-bottom: 40px;
     margin-top: 5px;
+    border-radius: 10px;
+    overflow-y: auto;
 }
 
+.event__popup__description p {
+    height: 100px;
+}
 .event__popup__btn {
     display: flex;
     justify-content: space-between;
@@ -86,17 +104,64 @@
 }
 
 
+.body__event__popup__right {
+    width: 400px;
+    max-height: 400px;
+    margin-left: 20px;
+    text-align: center;
+    overflow: auto;
+    padding-right: 10px;
+}
+
+.event__popup__right__item {
+    height: 70px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: var(--white-2);
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font);
+    font-size: 1.8rem;
+    display: flex;
+}
+
+.event__popup__right__item__discount {
+    padding-right: 35px;
+}
+
+.event__popup__right__item__img {
+    width: 85px;
+    padding-left: 10px;
+}
+
+.event__popup__item__close {
+    width: 30px;
+    padding-right: 10px;
+}
+
+
 /* new event */
 .body__newEvent {
+    text-align: center;
     position: fixed;
     border-radius: 12px;
     top: 20%;
-    left: 35%;
-    width: 500px;
-    z-index: 1000;
+    left: 25%;
+    width: 1000px;
     background-color: var(--lightGreen-1);
     padding: 25px;
     display: none;
+}
+
+.body__newEvent__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.body__newEvent__left {
+    width: 400px;
+    margin-top: 20px;
+    text-align: left;
 }
 
 .body__newEvent ul li {
@@ -104,6 +169,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 25px;
+}
+
+.newEvent__description input {
+    min-height: 80px;
 }
 
 .body__newEvent ul li span{
@@ -116,10 +185,14 @@
 }
 
 .newEvent__input-text {
-    width: 300px;
+    width: 270px;
+    border-radius: 5px;
+    border: none;
+    height: auto;
+    min-height: 30px;
     font-size: 1.8rem;
-    padding: 10px 5px;
-    display: block;
+    padding: 15px 10px;
+    display: flex;
     height: 30px;
     margin: 10px 0;
 }
@@ -128,7 +201,7 @@
     font-family: var(--font);
     font-weight: 400;
     padding: 0 5px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 
@@ -142,6 +215,54 @@
     margin-top: 15px;
     display: flex;
     align-items: center;
+    cursor: pointer;
+}
+
+
+.body__newEvent__right {
+    width: 500px;
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+.body__newEvent__right__list {
+    min-width:400px;
+    max-height: 400px;
+    margin-left: 40px;
+    text-align: center;
+    overflow: auto;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.body__newEvent__right__item {
+    height: 70px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: var(--white-2);
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font);
+    font-size: 1.8rem;
+    display: flex;
+}
+
+.body__newEvent__right__item__img {
+    width: 85px;
+    padding-left: 10px;
+}
+
+.body__newEvent__right__item__name {
+    width: 200px;
+}
+
+.body__newEvent__right__item__input {
+    max-width: 50px;
+}
+
+.body__newEvent__right__item__select {
+    width: 50px;
+    padding-right: 10px;
 }
 
 .newEvent__popup__btn {
@@ -152,8 +273,19 @@
     margin-top: 60px;
 }
 
+.body__newEvent__btn__icon {
+    align-content: center;
+    margin-top: 70px;
+    width: 70px;
+}
+
 .body__newEvent__btn {
+    background-color: var(--lightGreen-1);
+    text-align: center;
+    border-radius: 12px;
+    width: 250px;
     margin-left: 50px;
-    margin-top: 50px;
+    margin-bottom: 50px;
+    cursor: pointer;
 }
 /* event new event*/

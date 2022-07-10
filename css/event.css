@@ -42,12 +42,13 @@
 .body__event__popup {
     position: fixed;
     border-radius: 12px;
-    top: 20%;
+    top: 15%;
     left: 30%;
     width: 800px;
     background-color: var(--lightGreen-1);
     padding: 25px;
     display: none;
+    overflow: auto;
 }
 
 .body__event__popup__container {
@@ -145,9 +146,9 @@
     text-align: center;
     position: fixed;
     border-radius: 12px;
-    top: 20%;
+    top: 15%;
     left: 25%;
-    width: 1000px;
+    width: 950px;
     background-color: var(--lightGreen-1);
     padding: 25px;
     display: none;
@@ -195,9 +196,11 @@
     display: flex;
     height: 30px;
     margin: 10px 0;
+    border: 1px solid var(--white-2);
 }
 
 .newEvent__poster-upload {
+    display: inline-block;
     font-family: var(--font);
     font-weight: 400;
     padding: 0 5px;
@@ -209,11 +212,8 @@
     font-family: var(--font);
     font-size: 1.5rem;
     border-radius: 8px;
-    height: 30px;
-    width: 70px;
-    padding-left: 8px;
-    margin-top: 15px;
-    display: flex;
+    margin-left: 65px;
+    margin-top: 20px;
     align-items: center;
     cursor: pointer;
 }
@@ -226,18 +226,19 @@
 }
 
 .body__newEvent__right__list {
+    margin-top: 10px;
     min-width:400px;
     max-height: 400px;
     margin-left: 40px;
     text-align: center;
     overflow: auto;
     justify-content: space-between;
-    padding-right: 10px;
+    border-radius: 3px;
 }
 
 .body__newEvent__right__item {
     height: 70px;
-    margin-top: 20px;
+    margin: 10px 10px;
     border-radius: 10px;
     background-color: var(--white-2);
     justify-content: space-between;
@@ -257,13 +258,15 @@
 }
 
 .body__newEvent__right__item__input {
-    max-width: 50px;
+    max-width: 80px;
+    min-height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+    margin-right: 30px;
+    padding-left: 5px;
+    font-size: 1.4rem;
 }
 
-.body__newEvent__right__item__select {
-    width: 50px;
-    padding-right: 10px;
-}
 
 .newEvent__popup__btn {
     display: flex;
@@ -284,8 +287,33 @@
     text-align: center;
     border-radius: 12px;
     width: 250px;
+    min-height: 200px;
     margin-left: 50px;
     margin-bottom: 50px;
     cursor: pointer;
 }
-/* event new event*/
+
+/* validation */
+.invalid__input-border {
+    border: 1px solid var(--red-1);
+}
+
+.invalid__input-icon {
+    width: 15px;
+}
+
+.invalid__input-message {
+    margin-left: 130px;
+    display: flex;
+}
+
+.invalid__input-message p {
+    margin-left: 10px;
+    font-size: 1.4rem;
+    color: var(--red-1);
+}
+
+.invalid__input-dish {
+    margin-top: 20px;
+    margin-left: 60px;
+}

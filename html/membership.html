@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/globalStyle.css">
+    <link rel="stylesheet" href="../css/membership.css">
+    <!-- aos css -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <div class="nav">
+        <div class="container">
+            <div class="nav__wrapper">
+                <div class="nav__role">
+                    <div class="nav__role__img">
+                        <a href="home.html">
+                            <img src="../images/manager.png" alt="thenf">
+                        </a>
+                    </div>
+                    <p class="nav__role__text">
+                        Manager
+                    </p>
+                </div>
+                <div class="nav__search">
+                    <form action="search">
+                        <input type="text" class="nav__search__bar" placeholder="Search" required>
+                        <a href="#" class="nav__search__icon">
+                            <img src="../images/search.png" alt="thenf">
+                        </a>
+                    </form>
+                </div>
+                <div class="nav__logout">
+                    <a href="#" class="btn primary-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="body">
+        <div class="container">
+            <div class="body__wrapper">
+                <div class="body__menu">
+                    <ul>
+                        <li>
+                            <a href="./seat.html" class="btn primary-btn menu-btn"> Seat</a>
+                        </li>
+                        <li>
+                            <a href="./menu.html" class="btn primary-btn menu-btn"> Menu</a>
+                        </li>
+                        <li>
+                            <a href="./event.html" class="btn primary-btn menu-btn"> Event</a>
+                        </li>
+                        <li>
+                            <a href="./membership.html" class="btn primary-btn menu-btn"> Membership</a>
+                        </li>
+                        <li>
+                            <a href="./reprot.html" class="btn primary-btn menu-btn"> Report</a>
+                        </li>
+                        <li>
+                            <a href="./bill.html" class="btn primary-btn menu-btn"> Bill</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body__main">
+                    <div class="body__main__bar">
+                        <div class="body__main__bar__id">
+                            ID
+                        </div>
+                        <div class="body__main__bar__name">
+                            <div class="separate">|</div>
+                            NAME
+                            <div class="separate">|</div>
+                        </div>
+                        <div class="body__main__bar__phone">
+                            PHONE
+                        </div>
+                        <div class="body__main__bar__point">
+                            <div class="separate">|</div>
+                            POINT
+                            <div class="separate">|</div>
+                        </div>
+                        <div class="body__main__bar__rank">
+                            RANK
+                        </div>
+                    </div>
+                    <div class="body__main__list">
+                        <!-- <div class="body__main__list__item">
+                            <div class="body__main__bar__id">
+                                1
+                            </div>
+                            <div class="body__main__bar__name">
+                                <div class="separate">|</div>
+                                Then Manh Thang
+                                <div class="separate">|</div>
+                            </div>
+                            <div class="body__main__bar__phone">
+                                034667889
+                            </div>
+                            <div class="body__main__bar__point">
+                                <div class="separate">|</div>
+                                100000
+                                <div class="separate">|</div>
+                            </div>
+                            <div class="body__main__bar__rank">
+                                Gold
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="body__main__btn">
+                        <div class="body__main__new-btn btn primary-btn" onclick="openNewMembership()">New</div>
+                        <div class="body__main__manage__discount-btn btn primary-btn" onclick="openManageDiscount()">Manage discount</div>
+                    </div>
+
+                    <!-- new membership form -->
+                    <div class="body__new__membership">
+                        <!-- <div class="body__new__membership__input">
+                            <div class="new__membership__input__name">
+                                <span>Name</span>
+                                <input type="text" class="new__membership__input-text">
+                            </div>
+                            <div class="new__membership__input__phone">
+                                <span>Phone</span>
+                                <input type="text" class="new__membership__input-text">
+                            </div>
+                        </div>
+                        <div class="body__new__membership__btn">
+                            <div class="new__membership__add-btn  btn primary-btn">
+                                Add
+                            </div>
+                            <div class="new__membership__cancel-btn  btn primary-btn">
+                                Cancel
+                            </div>
+                        </div> -->
+                    </div>
+                    <!-- end new membership form -->
+
+                    <!-- manage discount for rank -->
+                    <div class="body__manage__discount">
+                        <!-- <div class="body__manage__discount__input">
+                            <div class="body__manage__discount__bronze">
+                                <span>Bronze</span>
+                                <input type="text" class="manage__discount__input-text">
+                            </div>
+                            <div class="body__manage__discount__silver">
+                                <span>Silver</span>
+                                <input type="text" class="manage__discount__input-text">
+                            </div>
+                            <div class="body__manage__discount__gold">
+                                <span>Gold</span>
+                                <input type="text" class="manage__discount__input-text">
+                            </div>
+                            <div class="body__manage__discount__diamond">
+                                <span>Diamond</span>
+                                <input type="text" class="manage__discount__input-text">
+                            </div>
+                        </div>
+                        <div class="body__manage__discount__btn">
+                            <div class="body__manage__discount__apply btn primary-btn">
+                                Apply
+                            </div>
+                            <div class="body__manage__discount__cancel btn primary-btn" onclick="closeManageDiscount()">
+                                Cancel
+                            </div>
+                        </div> -->
+                    </div>
+                    <!-- end manage discount for rank -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- aos script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- add custom script -->
+    <script src="../js/membership.js"></script>
+</body>
+</html>

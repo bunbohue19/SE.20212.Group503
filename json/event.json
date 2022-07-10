@@ -1,0 +1,67 @@
+{
+    "getEvent": [
+        {
+            "eventID": 1,
+            "eventName": "nam",
+            "description": "aaaaaaa",
+            "beginTime": "2022-06-29T09:19:58.803+00:00",
+            "endTime": "2022-06-29T09:19:58.803+00:00",
+            "discount": [
+                {
+                    "rank": "Bronze",
+                    "discountRate": 0
+                },
+                {
+                    "rank": "Silver",
+                    "discountRate": 10
+                },
+                {
+                    "rank": "Gold",
+                    "discountRate": 20
+                },
+                {
+                    "rank": "Diamond",
+                    "discountRate": 30
+                }
+            ]
+        }
+    ],
+    
+    "getMembership": [
+        {
+            "memberID": 1,
+            "memberName": "Then Manh Thang",
+            "memberPhone": "0334546578",
+            "memberRank": "Bronze",
+            "memberPoint": 1000
+        },
+        {
+            "memberID": 2,
+            "memberName": "Pham Thi Nhung",
+            "memberPhone": "0334546533",
+            "memberRank": "Diamond",
+            "memberPoint": 1000
+        },
+        {
+            "memberID": 3,
+            "memberName": "Vu Tri Sy",
+            "memberPhone": "033454678",
+            "memberRank": "Gold",
+            "memberPoint": 10000
+        },
+        {
+            "memberID": 4,
+            "memberName": "Nguyen Thu Huong",
+            "memberPhone": "0334546578",
+            "memberRank": "Silver",
+            "memberPoint": 1000
+        },
+        {
+            "memberID": 5,
+            "memberName": "Nguyen Manh Dung",
+            "memberPhone": "0334546578",
+            "memberRank": "Bronze",
+            "memberPoint": 1000
+        }
+    ]
+}

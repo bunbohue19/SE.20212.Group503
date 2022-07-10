@@ -15,7 +15,7 @@ html {
 	--black-3: #5b6359;
 	--white-1: #e8e8e8;
     --white-2: #ffffff;
-
+    --red-1:   #f33a58;
     --font: 'Poppins';
 }
 
@@ -70,6 +70,7 @@ a {
     border-radius:  8px;
     font-size:  1.4rem;
     padding: 1.2rem 2rem;
+    cursor: pointer;
 }
 
 .primary-btn {

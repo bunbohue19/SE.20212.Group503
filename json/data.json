@@ -1,0 +1,162 @@
+{
+  "getEvent": [
+    {
+      "id": 1,
+      "name": "Your day",
+      "description": "For everyone",
+      "beginTime": "2022-06-28T12:19",
+      "endTime": "2022-07-28T12:19",
+      "discount": [
+        {
+          "rank": "Bronze",
+          "discountRate": 10
+        },
+        {
+          "rank": "Silver",
+          "discountRate": 10
+        },
+        {
+          "rank": "Gold",
+          "discountRate": 20
+        },
+        {
+          "rank": "Diamond",
+          "discountRate": 30
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Weedding",
+      "description": "For everyone",
+      "beginTime": "2022-06-29T09:19:58.803+00:00",
+      "endTime": "2022-07-29T09:19:58.803+00:00",
+      "discount": [
+        {
+          "rank": "Bronze",
+          "discountRate": 10
+        },
+        {
+          "rank": "Silver",
+          "discountRate": 15
+        },
+        {
+          "rank": "Gold",
+          "discountRate": 20
+        },
+        {
+          "rank": "Diamond",
+          "discountRate": 30
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Fast sale",
+      "description": "For everyone",
+      "beginTime": "2022-06-29T09:19:58.803+00:00",
+      "endTime": "2022-08-29T09:19:58.803+00:00",
+      "discount": [
+        {
+          "rank": "Bronze",
+          "discountRate": 10
+        },
+        {
+          "rank": "Silver",
+          "discountRate": 15
+        },
+        {
+          "rank": "Gold",
+          "discountRate": 20
+        },
+        {
+          "rank": "Diamond",
+          "discountRate": 30
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Happy New Year",
+      "description": "For everyone",
+      "beginTime": "2022-06-29T09:19:58.803+00:00",
+      "endTime": "2022-08-29T09:19:58.803+00:00",
+      "discount": [
+        {
+          "rank": "Bronze",
+          "discountRate": 10
+        },
+        {
+          "rank": "Silver",
+          "discountRate": 15
+        },
+        {
+          "rank": "Gold",
+          "discountRate": 20
+        },
+        {
+          "rank": "Diamond",
+          "discountRate": 30
+        }
+      ]
+    }
+  ],
+  "getMembership": [
+    {
+      "name": "Then Manh Thang",
+      "phone": "033454657",
+      "point": 0,
+      "rank": "Bronze",
+      "purchased": 0,
+      "id": 1
+    },
+    {
+      "id": 2,
+      "name": "Pham Thi Nhung",
+      "phone": "0334546533",
+      "rank": "Diamond",
+      "purchased": 50000000,
+      "point": 1000
+    },
+    {
+      "id": 3,
+      "name": "Vu Tri Sy",
+      "phone": "033454678",
+      "rank": "Gold",
+      "purchased": 30000000,
+      "point": 10000
+    },
+    {
+      "name": "Nguyen Thu Huong",
+      "phone": "033454",
+      "point": 1000,
+      "rank": "Silver",
+      "purchased": 10000000,
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Nguyen Manh Dung",
+      "phone": "0334546578",
+      "rank": "Bronze",
+      "purchased": 0,
+      "point": 0
+    },
+    {
+      "name": "Vu Thanh Hai",
+      "phone": "123456",
+      "point": 0,
+      "rank": "Bronze",
+      "purchased": 0,
+      "id": 6
+    },
+    {
+      "name": "Nguyen Thanh Nam",
+      "phone": "134444",
+      "point": 0,
+      "rank": "Bronze",
+      "purchased": 0,
+      "id": 7
+    }
+  ]
+}

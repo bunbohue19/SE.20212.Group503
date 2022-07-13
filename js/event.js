@@ -1,368 +1,581 @@
+import { role } from './role.js'
 
-// event-infor-popup
+console.log(role);
+
 var listEvent = [];
-var listDish = [];
-
-
-var showEventAPI = "http://localhost:3000/showEvent";
-var getDishAPI = "http://localhost:3000/getDish";
-var newEventAPI = "http://localhost:3000/showEvent";
-
-const  eventItemList = document.getElementsByClassName("body__event__list")[0]
-const eventItems = document.getElementsByClassName("body__event__item")
-const inforPopup = document.getElementsByClassName("body__event__popup")[0]
-const newEventForm = document.querySelector(".body__newEvent")
-
 var newEvent = 
-{
-    "eventName": null,
-    "description": null,
-    "beginTime": null,
-    "endTime": null,
-    "discount": []
+{     "id": null,
+      "name": null,
+      "description": null,
+      "beginTime": null,
+      "endTime": null,
+      "discount": [
+        {
+            "rank": "Bronze",
+            "discountRate": null
+          },
+          {
+            "rank": "Silver",
+            "discountRate": null
+          },
+          {
+            "rank": "Gold",
+            "discountRate": null
+          },
+          {
+            "rank": "Diamond",
+            "discountRate": null
+          }
+      ]
 }
+
+var GETeventAPI = "http://localhost:3000/getEvent";
+var POSTeventAPI = "http://localhost:3000/getEvent";
+var PUTeventAPI = "http://localhost:3000/getEvent";
+var DELETEeventAPI = "http://localhost:3000/getEvent";
+
+var bodyEventList = document.getElementsByClassName("body__event__list")[0]
+var bodyEventItem = document.getElementsByClassName("body__event__item")
+var bodyEventPopup = document.getElementsByClassName("body__event__popup")[0]
+var bodyNewEvent = document.getElementsByClassName("body__new__event")[0]
+
 
 function start(){
     getEvents();
-    getDishes();
 }
 
 start();
 
 function getEvents(){
-    fetch(showEventAPI)
+    fetch(GETeventAPI)
     .then(function(response){
         return response.json();
     })
-    .then(function(showEvent){
-        listEvent = showEvent;
-        handleShowEvent();
+    .then(function(getEvent){
+        listEvent = getEvent;
+        showEvents();
     });
 }
-
-function getDishes(){
-    fetch(getDishAPI)
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(getDish){
-        listDish = getDish;
-    });
-}
-
 
 
 //show event handler
-function handleShowEvent(){
-    for(let event of listEvent){
-            eventItemList.innerHTML +=  ` 
-                                        <div class="body__event__item" onclick="showEventInfor(${event.id})">
+window.showEvents = function(){
+    bodyEventList.innerHTML = ``;
+    for(let i = 0; i < listEvent.length; i++){
+            bodyEventList.innerHTML +=  ` 
+                                        <div class="body__event__item" onclick="showEventInfor(${i})">
                                             <a href="#" class="body__event__item__icon">
                                                 <img src="../images/eventsMedia1.png" alt="">
                                             </a>
                                             <p class="body__event__item__title">
-                                                ${event.eventName}
+                                                ${listEvent[i].name}
                                             </p>
                                         </div>
                                         `
     }
-    eventItemList.innerHTML +=  ` 
-                                <div class="body__newEvent__btn" onclick="openNewEventBtn(${-1})">
-                                    <a href="#" class="body__newEvent__btn__icon">
-                                        <img src="../images/plus.png" alt="">
-                                    </a>
-                                </div>
-                                `
+    
+    if(role == 1){
+        bodyEventList.innerHTML +=  ` 
+                                    <div class="body__new__event__btn" onclick="openNewEventBtn()">
+                                        <a href="#" class="body__new__event__btn__icon">
+                                            <img src="../images/plus.png" alt="">
+                                        </a>
+                                    </div>
+        `
+    }
 }
 
-function showEventInfor(id){
-    inforPopup.style.display = 'block'
-    for(let i = 0; i < listEvent.length; i++){
-        if(listEvent[i].id == id){
-            //left
-            eventInfor = document.getElementsByClassName("event__popup__infor")
-            eventInfor[0].innerHTML = listEvent[i].eventName
-            eventInfor[1].innerHTML = listEvent[i].description
-            eventInfor[2].innerHTML = new Date(listEvent[i].beginTime).toLocaleString()
-            eventInfor[3].innerHTML = new Date(listEvent[i].endTime).toLocaleString()
-            
-            //right
-            dishInfor = document.getElementsByClassName("body__event__popup__right")[0];
-            dishInfor.innerHTML =   `
-                                    <div class="event__popup__sale">
-                                        Discount
-                                    </div>
-                                    `
-            for(discountDish of listEvent[i].discount){
-                dishInfor.innerHTML +=   `
-                                            <div class="event__popup__right__item">
-                                                <div class="event__popup__right__item__img">
-                                                    <img src="../images/food-1.png" alt="">
-                                                </div>
-                                                <span class="event__popup__right__item__name">
-                                                    ${discountDish.dishName}
-                                                </span>
-                                                <span class="event__popup__right__item__discount">
-                                                    -${discountDish.discount} %
-                                                </span>
-                                                <!-- <div class="event__popup__item__close">
-                                                    <img src="../images/close.png" alt="">
-                                                </div> -->
-                                            </div>
-                                        `
-            }
-            eventInforBtn = document.getElementsByClassName("event__popup__btn")[0];
-            eventInforBtn.innerHTML =   `
-                                        <div class="event__popup__delete-btn" onclick="handleDeleteEvent(${listEvent[i].id})">
-                                            <a href="#" class="btn primary-btn">Delete</a> 
-                                        </div>
-                                        <div class="event__popup__edit-btn" onclick="handleEditEvent(${i})">
-                                            <a href="#" class="btn primary-btn">Edit</a> 
-                                        </div>
-                                        <div class="event__popup__done-btn" onclick="closeInforPopupBtn()">
-                                            <a href="#" class="btn primary-btn">Done</a> 
-                                        </div>
-                                        `
+
+window.getRankDiscount = function(rank, discountList) {
+    for(let discount of discountList) {
+        if(discount.rank == rank) {
+            return discount.discountRate;
         }
     }
 }
 
-function handleEditEvent(index) {
-    closeInforPopupBtn();
-    
-    openNewEventBtn(index);
-    //set value infor
-    document.getElementsByClassName("newEvent__input-text")[0].value = listEvent[index].eventName;
-    document.getElementsByClassName("newEvent__input-text")[1].value = listEvent[index].description;
-    document.getElementsByClassName("newEvent__input-text")[2].value = new Date(listEvent[index].beginTime).toISOString().slice(0, 16);
-    document.getElementsByClassName("newEvent__input-text")[3].value = new Date(listEvent[index].endTime).toISOString().slice(0, 16);
+// function showEventInfor(index){
+window.showEventInfor = function(index) {
+    bodyEventPopup.innerHTML = `
+                                <h2>Information</h2>
+                                <div class="body__event__popup__container">
+                                    <div class="body__event__popup__left">
+                                        <ul>
+                                            <li class="event__popup__name">
+                                                Name
+                                                <p class="event__popup__infor">
+                                                    ${listEvent[index].name}
+                                                </p>
+                                            </li>
+                                            <li class="event__popup__description">
+                                                Description
+                                                <p class="event__popup__infor">
+                                                    ${listEvent[index].description}
+                                                </p>
+                                            </li>
+                                            <li class="event__popup__start">
+                                                Start time
+                                                <p class="event__popup__infor">
+                                                    ${listEvent[index].beginTime}
+                                                </p>
+                                            </li>
+                                            <li class="event__popup__end">
+                                                End time 
+                                                <p class="event__popup__infor">
+                                                    ${listEvent[index].endTime}
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="body__event__popup__right">
+                                        <div class="body__event__popup__right__rank">
+                                            <div class="body__event__popup__right__rank-bronze">
+                                                <span>Bronze Discount</span>
+                                                <p class="event__popup__infor">${getRankDiscount('Bronze', listEvent[index].discount)}%</p>
+                                            </div>
+                                            <div class="body__event__popup__right__rank-silver">
+                                                <span>Silver Discount</span>
+                                                <p class="event__popup__infor">${getRankDiscount('Silver', listEvent[index].discount)}%</p>
+                                            </div>
+                                            <div class="body__event__popup__right__rank-gold">
+                                                <span>Gold Discount</span>
+                                                <p class="event__popup__infor">${getRankDiscount('Gold', listEvent[index].discount)}%</p>
+                                            </div>
+                                            <div class="body__event__popup__right__rank-diamond">
+                                                <span>Diamond Discount</span>
+                                                <p class="event__popup__infor">${getRankDiscount('Diamond', listEvent[index].discount)}%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="event__popup__btn">
+                                    <div class="event__popup__done-btn" onclick="closeInforPopupBtn()">
+                                        <a href="#" class="btn primary-btn">Done</a> 
+                                    </div>
+                                </div>
+    `
+    if(role == 1) {
+        var eventPopupBtn = bodyEventPopup.getElementsByClassName("event__popup__btn")[0];
+        eventPopupBtn.innerHTML += `
+                                    <div class="event__popup__edit-btn" onclick="openEditEvent(${index})">
+                                        <a href="#" class="btn primary-btn">Edit</a> 
+                                    </div>
+                                    <div class="event__popup__delete-btn" onclick="handleDeleteEvent(${listEvent[index].id})">
+                                        <a href="#" class="btn primary-btn">Delete</a> 
+                                    </div>
+        `
+    }
 }
 
-function closeInforPopupBtn() {
-    inforPopup.style.display = 'none'
+
+window.closeInforPopupBtn = function () {
+    bodyEventPopup.innerHTML = ``;
 }
 
-function handleDeleteEvent(id){
+window.handleDeleteEvent = function(id){
     var options = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
           },
     };
-    fetch(showEventAPI + '/' + id, options) 
+    fetch(DELETEeventAPI + '/' + id, options) 
         .then(function(response) {
             response.json();
         })
         .then(function() {
+            closeInforPopupBtn();
+            listEvent = [];
+            newEvent = 
+            {     
+                "id": null,
+                "name": null,
+                "description": null,
+                "beginTime": null,
+                "endTime": null,
+                "discount": [
+                    {
+                        "rank": "Bronze",
+                        "discountRate": null
+                      },
+                      {
+                        "rank": "Silver",
+                        "discountRate": null
+                      },
+                      {
+                        "rank": "Gold",
+                        "discountRate": null
+                      },
+                      {
+                        "rank": "Diamond",
+                        "discountRate": null
+                      }
+                ]
+            }
             getEvents();
         });
 }
 
+window.getDiscountRate = function (index, rank) {
+    var rate;
+    for(let discount of listEvent[index].discount) {
+        if(discount.rank == rank) {
+            rate = discount.discountRate;
+        }
+    }
+    return rate;
+}
 
+window.openEditEvent = function (index) {
+    closeInforPopupBtn();
+    newEvent.name = listEvent[index].name;
+    newEvent.description = listEvent[index].description;
+    newEvent.beginTime = new Date(listEvent[index].beginTime).toISOString().slice(0, 16);
+    newEvent.endTime = new Date(listEvent[index].endTime).toISOString().slice(0, 16);
+    newEvent.discount = listEvent[index].discount;
 
-
-
-//new Event handler
-function setNewEventValue(name, description, beginTime, endTime) {
-    newEventForm.innerHTML = `
+    bodyNewEvent.innerHTML = `
                                 <h2>New Event</h2>
-                                <div class="body__newEvent__container">
-                                    <div class="body__newEvent__left">
+                                <div class="body__new__event__container">
+                                    <div class="body__new__event__left">
                                         <ul>
-                                            <li class="newEvent__name">
+                                            <li class="new__event__name">
                                                 <span>Name</span>
-                                                <input type="text" value=${name} class="newEvent__input-text" onblur="handleGetInputName(value)">
+
+                                                <input type="text" value="${listEvent[index].name}" class="new__event__input-text" 
+                                                onclick="removeInvalidEffect('new__event__name', 0)" 
+                                                onblur="handleGetInputName(value)">
+
+                                                <div class="invalid__input-message">
+                                                </div>
                                             </li>
-                                            <li class="newEvent__description">
+                                            <li class="new__event__description">
                                                 <span>Description</span>
-                                                <input type="text" value="${description}" class="newEvent__input-text" onblur="handleGetInputDescription(value)">
+
+                                                <input type="text" value="${listEvent[index].description}" class="new__event__input-text" 
+                                                onclick="removeInvalidEffect('new__event__description', 1)" 
+                                                onblur="handleGetInputDescription(value)">
+
+                                                <div class="invalid__input-message">
+                                                </div>
                                             </li>
-                                            <div class="newEvent__poster-upload">
+                                            <div class="new__event__poster-upload">
                                                 <span>Poster</span>
-                                                <label for="fileImage" class=" btn primary-btn newEvent__poster-upload-label">Upload</label>
+                                                <label for="fileImage" class=" btn primary-btn new__event__poster-upload-label">Upload</label>
                                                 <input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" required style='display:none' >
                                             </div>
-                                            <li class="newEvent__begin-time">
-                                                <span>Start time</span>
-                                                <input type="datetime-local" value="${beginTime}" class="newEvent__input-text" onblur="handleGetInputBeginTime(value)">
+                                            <li class="new__event__begin-time">
+                                                <span>Begin time</span>
+
+                                                <input type="datetime-local" value="${new Date(listEvent[index].beginTime).toISOString().slice(0, 16)}" class="new__event__input-text" 
+                                                onclick="removeInvalidEffect('new__event__begin-time', 2)" 
+                                                onblur="handleGetInputBeginTime(value)">
+
+                                                <div class="invalid__input-message">
+                                                </div>
                                             </li>
-                                            <li class="newEvent__end-time">
+                                            <li class="new__event__end-time">
                                                 <span>End time</span>
-                                                <input type="datetime-local" value="${endTime}" class="newEvent__input-text" onblur="handleGetInputEndTime(value)">
+
+                                                <input type="datetime-local" value="${new Date(listEvent[index].endTime).toISOString().slice(0, 16)}" class="new__event__input-text" 
+                                                onclick="removeInvalidEffect('new__event__end-time', 3)" 
+                                                onblur="handleGetInputStopTime(value)">
+
+                                                <div class="invalid__input-message">
+                                                </div>
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="body__newEvent__right">
-                                        <h2>Select dish</h2>
-                                        <div class="body__newEvent__right__list">
+                                    <div class="body__new__event__right">
+                                        <div class="body__new__event__right__rank">
+                                            <div class="body__new__event__right__rank-bronze">
+                                                <span>Bronze Discount</span>
+                                                <input type="text" value="${getDiscountRate(index, 'Bronze')}" class="new__event__input-text"
+                                                    onclick="removeInvalidEffect('body__new__event__right__rank-bronze', 4)" 
+                                                    onblur="handleGetInputDiscountRank('body__new__event__right__rank-bronze', 'Bronze', 4, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
+                                            <div class="body__new__event__right__rank-silver">
+                                                <span>Silver Discount</span>
+                                                <input type="text" value="${getDiscountRate(index, 'Silver')}" class="new__event__input-text" 
+                                                    onclick="removeInvalidEffect('body__new__event__right__rank-silver', 5)" 
+                                                    onblur="handleGetInputDiscountRank('body__new__event__right__rank-silver', 'Silver', 5, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
+                                            <div class="body__new__event__right__rank-gold">
+                                                <span>Gold Discount</span>
+                                                <input type="text" value="${getDiscountRate(index, 'Gold')}" class="new__event__input-text" 
+                                                    onclick="removeInvalidEffect('body__new__event__right__rank-gold', 6)" 
+                                                    onblur="handleGetInputDiscountRank('body__new__event__right__rank-gold', 'Gold', 6, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
+                                            <div class="body__new__event__right__rank-diamond">
+                                                <span>Diamond Discount</span>
+                                                <input type="text" value="${getDiscountRate(index, 'Diamond')}" class="new__event__input-text" 
+                                                    onclick="removeInvalidEffect('body__new__event__right__rank-diamond', 7)" 
+                                                    onblur="handleGetInputDiscountRank('body__new__event__right__rank-diamond', 'Diamond', 7, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="newEvent__popup__btn">
-                                    <div class="newEvent__popup__create-btn" onclick="handleCreateNewEvent()">
-                                        <a href="#" class="btn primary-btn">Create</a> 
+                                <div class="new__event__popup__btn">
+                                    <div class="new__event__popup__create-btn" onclick="handleEditEvent(${index})">
+                                        <a href="#" class="btn primary-btn">Apply</a> 
                                     </div>
-                                    <div class="newEvent__popup__close-btn">
+                                    <div class="new__event__popup__close-btn">
                                         <a href="#" class="btn primary-btn" onclick="closeNewEventBtn()">Close</a> 
                                     </div>
                                 </div>
-                            `
+    `
 }
 
-function closeNewEventBtn() {
-    newEventForm.style.display = 'none'
-    setNewEventValue();
-}
-
-function openNewEventBtn(index) {
-    var reset_input_values = document.getElementsByClassName("newEvent__input-text");
-    for (var i = 0; i < reset_input_values.length; i++) {
-        reset_input_values[i].value = '';
+window.handleEditEvent = function (index) {
+    var isValid = true;
+    
+    if(!newEvent.name) {
+        handleGetInputName();
+        isValid = false;
     }
-    newEventForm.style.display = 'block'
 
-    if(index == -1) {
-        showDishes([]);
-    } else {
-        showDishes(listEvent[index].discount);
+    if(!newEvent.description) {
+        handleGetInputDescription();
+        isValid = false;
     }
-}
 
+    if(!newEvent.beginTime) {
+        handleGetInputBeginTime();
+        isValid = false;
+    }
+    
+    if(!newEvent.endTime) {
+        handleGetInputStopTime();
+        isValid = false;
+    }
 
-function showDishes(discountValue) {
-    console.log(discountValue)
-    var showListDish = document.getElementsByClassName("body__newEvent__right__list")[0]
-    for(let i = 0; i < listDish.length; i++) {
-        if(discountValue.length == 0) {
-            showListDish.innerHTML +=   `
-                                    <div class="body__newEvent__right__item">
-                                        <div class="body__newEvent__right__item__img">
-                                            <img src="../images/food-2.png" alt="">
-                                        </div>
-                                        <div class="body__newEvent__right__item__name">
-                                            ${listDish[i].dishName}
-                                        </div>
-                                        <div>
-                                            <input type="text" placeholder="E.g. 10" class="body__newEvent__right__item__input" onclick="removeInvalidDish('body__newEvent__right__item', ${i})" onBlur="handleGetInputDiscountRate(${listDish[i].dishID}, ${i},  value)">
-                                        </div> 
-                                    </div>
-                                    `
-        } else {
-            for(let value of discountValue){
-                if(listDish[i].dishID == value.dishID) {
-                    showListDish.innerHTML +=   `
-                                        <div class="body__newEvent__right__item">
-                                            <div class="body__newEvent__right__item__img">
-                                                <img src="../images/food-2.png" alt="">
-                                            </div>
-                                            <div class="body__newEvent__right__item__name">
-                                                ${listDish[i].dishName}
-                                            </div>
-                                            <div>
-                                                <input type="text" value="${value.discount}" class="body__newEvent__right__item__input" onclick="removeInvalidDish('body__newEvent__right__item', ${i})" onBlur="handleGetInputDiscountRate(${listDish[i].dishID}, ${i},  value)">
-                                            </div> 
-                                        </div>
-                                        `
-                    break;
-                } 
+    for(let discount in newEvent.discount) {
+        if(!discount.discountRate) {
+            if(discount.rank == 'Bronze') {
+                handleGetInputDiscountRank('body__new__event__right__rank-bronze', 'Bronze', 4);
+                isValid = false;
             }
-            showListDish.innerHTML +=   `
-                                    <div class="body__newEvent__right__item">
-                                        <div class="body__newEvent__right__item__img">
-                                            <img src="../images/food-2.png" alt="">
-                                        </div>
-                                        <div class="body__newEvent__right__item__name">
-                                            ${listDish[i].dishName}
-                                        </div>
-                                        <div>
-                                            <input type="text" placeholder="E.g. 10" class="body__newEvent__right__item__input" onclick="removeInvalidDish('body__newEvent__right__item', ${i})" onBlur="handleGetInputDiscountRate(${listDish[i].dishID}, ${i},  value)">
-                                        </div> 
-                                    </div>
-                                    `
-        }
+            if(discount.rank == 'Silver') {
+                handleGetInputDiscountRank('body__new__event__right__rank-silver', 'Silver', 5);
+                isValid = false;
+            }
+            if(discount.rank == 'Gold') {
+                handleGetInputDiscountRank('body__new__event__right__rank-gold', 'Gold', 6);
+                isValid = false;
+            }
+            if(discount.rank == 'Diamond') {
+                handleGetInputDiscountRank('body__new__event__right__rank-diamond', 'Diamond', 7);
+                isValid = false;
+            }
+        } 
     }
+
+    if(isValid) {
+        var options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(newEvent)
+        };
+        fetch(PUTeventAPI +'/' + listEvent[index].id, options) 
+            .then(function(response) {
+                response.json();
+            })
+            .then(function() {
+                listEvent = [];
+                newEvent = 
+                {     
+                    "id": null,
+                    "name": null,
+                    "description": null,
+                    "beginTime": null,
+                    "endTime": null,
+                    "discount": [
+                        {
+                            "rank": "Bronze",
+                            "discountRate": null
+                          },
+                          {
+                            "rank": "Silver",
+                            "discountRate": null
+                          },
+                          {
+                            "rank": "Gold",
+                            "discountRate": null
+                          },
+                          {
+                            "rank": "Diamond",
+                            "discountRate": null
+                          }
+                    ]
+                }
+                closeNewEventBtn();
+                getEvents();
+            });
+    } 
 }
 
 
+//new Event handler
+window.openNewEventBtn = function () {
+    bodyNewEvent.innerHTML = `
+                                <h2>New Event</h2>
+                                <div class="body__new__event__container">
+                                    <div class="body__new__event__left">
+                                        <ul>
+                                            <li class="new__event__name">
+                                                <span>Name</span>
+                                                <input type="text" class="new__event__input-text" 
+                                                    onclick="removeInvalidEffect('new__event__name', 0)" 
+                                                    onblur="handleGetInputName(value)">
+                                                <div class="invalid__input-message">
+                                                </div>
+                                            </li>
+                                            <li class="new__event__description">
+                                                <span>Description</span>
+                                                <input type="text" class="new__event__input-text" 
+                                                    onclick="removeInvalidEffect('new__event__description', 1)" 
+                                                    onblur="handleGetInputDescription(value)">
+                                                <div class="invalid__input-message">
+                                                </div>
+                                            </li>
+                                            <div class="new__event__poster-upload">
+                                                <span>Poster</span>
+                                                <label for="fileImage" class=" btn primary-btn new__event__poster-upload-label">Upload</label>
+                                                <input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" required style='display:none' >
+                                            </div>
+                                            <li class="new__event__begin-time">
+                                                <span>Begin time</span>
+                                                <input type="datetime-local" class="new__event__input-text" 
+                                                    onclick="removeInvalidEffect('new__event__begin-time', 2)" 
+                                                    onblur="handleGetInputBeginTime(value)">
+                                                <div class="invalid__input-message">
+                                                </div>
+                                            </li>
+                                            <li class="new__event__end-time">
+                                                <span>End time</span>
+                                                <input type="datetime-local" class="new__event__input-text" 
+                                                    onclick="removeInvalidEffect('new__event__end-time', 3)"
+                                                    onblur="handleGetInputStopTime(value)">
+                                                <div class="invalid__input-message">
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="body__new__event__right">
+                                        <div class="body__new__event__right__rank">
+                                            <div class="body__new__event__right__rank-bronze">
+                                                <span>Bronze Discount</span>
+                                                <input type="text" class="new__event__input-text"
+                                                onclick="removeInvalidEffect('body__new__event__right__rank-bronze', 4)" 
+                                                onblur="handleGetInputDiscountRank('body__new__event__right__rank-bronze', 'Bronze', 4, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
+                                            <div class="body__new__event__right__rank-silver">
+                                                <span>Silver Discount</span>
+                                                <input type="text" class="new__event__input-text" 
+                                                onclick="removeInvalidEffect('body__new__event__right__rank-silver', 5)" 
+                                                onblur="handleGetInputDiscountRank('body__new__event__right__rank-silver', 'Silver', 5, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
+                                            <div class="body__new__event__right__rank-gold">
+                                                <span>Gold Discount</span>
+                                                <input type="text" class="new__event__input-text" 
+                                                onclick="removeInvalidEffect('body__new__event__right__rank-gold', 6)" 
+                                                onblur="handleGetInputDiscountRank('body__new__event__right__rank-gold', 'Gold', 6, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
+                                            <div class="body__new__event__right__rank-diamond">
+                                                <span>Diamond Discount</span>
+                                                <input type="text" class="new__event__input-text" 
+                                                onclick="removeInvalidEffect('body__new__event__right__rank-diamond', 7)" 
+                                                onblur="handleGetInputDiscountRank('body__new__event__right__rank-diamond', 'Diamond', 7, value)">
+                                                <div class="invalid__input-message" style="margin-left: 10px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="new__event__popup__btn">
+                                    <div class="new__event__popup__create-btn" onclick="handleCreateNewEvent()">
+                                        <a href="#" class="btn primary-btn">Create</a> 
+                                    </div>
+                                    <div class="new__event__popup__close-btn">
+                                        <a href="#" class="btn primary-btn" onclick="closeNewEventBtn()">Close</a> 
+                                    </div>
+                                </div>
+    `
+}
 
-var discountDish = [];
-
-function newDiscount(dishID, discount) {
-    var discountDish = {
-        "dishID": dishID,
-        "discount": discount
-    }
-
-    return discountDish;
+window.closeNewEventBtn = function () {
+    bodyNewEvent.innerHTML = ``
 }
 
 
 // form validation
-function removeInvalidForm(className, index) {
-    let inputTag = document.getElementsByClassName(className)[0].getElementsByTagName("input")[0];
-    inputTag.classList.remove("invalid__input-border");
-    inputTag = document.getElementsByClassName(className)[0].getElementsByTagName("div")[index];
-    inputTag.remove();
+window.getInvalidMessage = function(message) {
+    var invalidMessage = `
+                            <img src="../images/info.png" class="invalid__input-icon" alt="">
+                            <p>${message}</p>
+    `
+    return invalidMessage;
 }
 
-function removeInvalidDish(className, index) {
-    let inputBorder = document.getElementsByClassName(className)[index];
-    inputBorder.classList.remove("invalid__input-border")
+window.handleInvalidEffect = function (validPath, index, message) {
+    let invalidBorder = document.getElementsByClassName("new__event__input-text")[index];
+    invalidBorder.classList.add("invalid__input-border");
 
-    let invalidMessage = document.getElementsByClassName("body__newEvent__right")[0].getElementsByClassName("invalid__input-message")[0]
-    if(invalidMessage) {
-        invalidMessage.remove();
+    let invalidMessage = document.getElementsByClassName(validPath)[0].getElementsByClassName("invalid__input-message")[0];
+    invalidMessage.innerHTML = getInvalidMessage(message);
+}
+
+window.removeInvalidEffect = function (path, index) {
+    let containerInput = document.getElementsByClassName(path)[0];
+    let invalidMessage = containerInput.getElementsByClassName("invalid__input-message")[0];
+    invalidMessage.innerHTML = ``
+
+    let invalidBorder = document.getElementsByClassName("new__event__input-text")[index];
+    if(invalidBorder.classList.contains("invalid__input-border")) {
+        invalidBorder.classList.remove("invalid__input-border")
     }
 }
 
-function handleGetInputName(name) {
+
+window.handleGetInputName = function (name) {
     if(name) {
-        newEvent.eventName = name;
+        newEvent.name = name;
     } else {
-        let newEventInputName = document.getElementsByClassName("newEvent__name")[0]
-        newEventInputName.innerHTML =   `
-                                        <span>Name</span>
-                                        <input type="text" class="newEvent__input-text invalid__input-border" onclick="removeInvalidForm('newEvent__name', 0)" onblur="handleGetInputName(value)">
-                                        <div class="invalid__input-message">
-                                            <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                            <p>Enter a name</p>
-                                        </div>
-                                        `
+        handleInvalidEffect('new__event__name', 0, 'Enter a name');
     }
-    
 }
 
-function handleGetInputDescription(description) {
+window.handleGetInputDescription = function(description) {
     if(description) {
         newEvent.description = description;
     } else {
-        let newEventInputDescription = document.getElementsByClassName("newEvent__description")[0]
-        newEventInputDescription.innerHTML =    `
-                                                <span>Description</span>
-                                                <input type="text" class="newEvent__input-text invalid__input-border" onclick="removeInvalidForm('newEvent__description', 0)" onblur="handleGetInputDescription(value)">
-                                                <div class="invalid__input-message">
-                                                    <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                                    <p>Enter a description</p>
-                                                </div>
-                                                `
+        handleInvalidEffect('new__event__description', 1, 'Enter a description');
     }
 }
 
-function handleGetInputBeginTime(beginTime) {
-    let newEventInputBeginTime = document.getElementsByClassName("newEvent__begin-time")[0]
+window.handleGetInputBeginTime = function(beginTime) {
     if(beginTime) {
         if(newEvent.endTime) {
-            begin = new Date(beginTime);
-            end = new Date(newEvent.endTime);
+            let begin = new Date(beginTime);
+            let end = new Date(newEvent.endTime);
             if(end <= begin) {
-                newEventInputBeginTime.innerHTML =    `
-                                                <span>Start time</span>
-                                                <input type="datetime-local" class="newEvent__input-text invalid__input-border" onclick="removeInvalidForm('newEvent__begin-time', 0)" onblur="handleGetInputBeginTime(value)">
-                                                <div class="invalid__input-message">
-                                                    <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                                    <p>Begin time must be smaller than end time</p>
-                                                </div>
-                                                `
+                handleInvalidEffect('new__event__begin-time', 2, 'Begin time must be smaller than end time');
             } else {
                 newEvent.beginTime = beginTime;
             }
@@ -370,32 +583,17 @@ function handleGetInputBeginTime(beginTime) {
             newEvent.beginTime = beginTime;
         }
     } else {
-        newEventInputBeginTime.innerHTML =    `
-                                                <span>Start time</span>
-                                                <input type="datetime-local" class="newEvent__input-text invalid__input-border" onclick="removeInvalidForm('newEvent__begin-time', 0)" onblur="handleGetInputBeginTime(value)">
-                                                <div class="invalid__input-message">
-                                                    <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                                    <p>Chose a specific time</p>
-                                                </div>
-                                                `
+        handleInvalidEffect('new__event__begin-time', 2, 'Chose a specific time');
     }
 }
 
-function handleGetInputEndTime(endTime) {
-    let newEventInputEndTime = document.getElementsByClassName("newEvent__end-time")[0]
+window.handleGetInputStopTime = function(endTime) {
     if(endTime) {
         if(newEvent.beginTime) {
-            begin = new Date(newEvent.beginTime);
-            end = new Date(endTime);
+            let begin = new Date(newEvent.beginTime);
+            let end = new Date(endTime);
             if(end <= begin) {
-                newEventInputEndTime.innerHTML =    `
-                                                <span>End time</span>
-                                                <input type="datetime-local" class="newEvent__input-text invalid__input-border" onclick="removeInvalidForm('newEvent__end-time')" onblur="handleGetInputEndTime(value)">
-                                                <div class="invalid__input-message">
-                                                    <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                                    <p>Begin time must be smaller than end time</p>
-                                                </div>
-                                                `
+                handleInvalidEffect('new__event__end-time', 3, 'Begin time must be smaller than end time');
             } else {
                 newEvent.endTime = endTime;
             }
@@ -403,123 +601,117 @@ function handleGetInputEndTime(endTime) {
             newEvent.endTime = endTime;
         }
     } else {
-        newEventInputEndTime.innerHTML =    `
-                                                <span>End time</span>
-                                                <input type="datetime-local" class="newEvent__input-text invalid__input-border" onclick="removeInvalidForm('newEvent__end-time', 0)" onblur="handleGetInputEndTime(value)">
-                                                <div class="invalid__input-message">
-                                                    <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                                    <p>Chose a specific time</p>
-                                                </div>
-                                                `
+        handleInvalidEffect('new__event__end-time', 3, 'Chose a specific time');
     }
 }
 
-function handleGetInputDiscountRate(dishID, index, discountRate) {
-    let invalidBorder = document.getElementsByClassName("body__newEvent__right__item");
-    let invalidMessage = document.getElementsByClassName("body__newEvent__right")[0]
-    if(discountRate) {
-        if(isNaN(discountRate)){
-            invalidBorder[index].classList.add("invalid__input-border");
-            invalidMessage.innerHTML +=    `
-                                            <div class="invalid__input-message invalid__input-dish">
-                                                <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                                <p>Discount rate must be a number</p>
-                                            </div>
-                                            `
-        } else if(discountRate <= 0  || discountRate > 100) {
-            invalidBorder[index].classList.add("invalid__input-border");
-            invalidMessage.innerHTML +=    `
-                                            <div class="invalid__input-message invalid__input-dish">
-                                                <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                                <p>Discount rate must be in range of (0; 100]</p>
-                                            </div>
-                                            `
+
+window.handleGetInputDiscountRank = function(path, rank, index, rate) {
+    if(rate) {
+        if(isNaN(rate)) {
+            handleInvalidEffect(path, index, 'Discount rate must be a number!');
         } else {
-            for(let dish of discountDish) {
-                if(dish.dishID == dishID) {
-                    dish.discount = discountRate;
-                    return;
+            if(rate < 0 || rate > 100) {
+                handleInvalidEffect(path, index, 'Discount rate must be in range of [0; 100]!');
+            } else {
+                for(let discount of newEvent.discount) {
+                    if(discount.rank == rank){
+                        discount.discountRate = rate;
+                    }
                 }
             }
-            discountDish.push(newDiscount(dishID, discountRate))
         }
     } else {
-        invalidBorder[index].classList.add("invalid__input-border");
-        invalidMessage.innerHTML +=    `
-                                        <div class="invalid__input-message invalid__input-dish">
-                                            <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                            <p>Discount rate must be in range of (0; 100]</p>
-                                        </div>
-                                        `
+        handleInvalidEffect(path, index, 'Enter a specific number!');
     }
 }
 
-
-function handleCreateNewEvent() {
-    check = true;
-    if(discountDish.length == 0) {
-        let invalidDishBorder = document.getElementsByClassName("body__newEvent__right__list")[0]
-        invalidDishBorder.classList.add("invalid__input-border");
-        let invalidDishMessage;
-        if(invalidDishMessage = invalidDishBorder.getElementsByClassName("invalid__input-message")[0]) {
-            invalidDishMessage.innerHTML = `
-                                        <div class="invalid__input-message invalid__input-dish">
-                                            <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                            <p>Discount at least one</p>
-                                        </div>
-                                        `
-        } else {
-            invalidDishBorder.outerHTML += `
-                                        <div class="invalid__input-message invalid__input-dish">
-                                            <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                            <p>Discount at least one</p>
-                                        </div>
-                                        `
-        }
-        check = false;
-    } else {
-        newEvent.discount = discountDish;
-    }
-
+window.handleCreateNewEvent = function() {
+    var isValid = true;
+    
     if(!newEvent.name) {
         handleGetInputName();
-        check = false;
+        isValid = false;
     }
 
     if(!newEvent.description) {
         handleGetInputDescription();
-        check = false;
+        isValid = false;
     }
 
     if(!newEvent.beginTime) {
         handleGetInputBeginTime();
-        check = false;
+        isValid = false;
     }
     
-    if(!newEvent.endTimeEndTime) {
-        handleGetInputEndTime();
-        check = false;
+    if(!newEvent.endTime) {
+        handleGetInputStopTime();
+        isValid = false;
     }
 
-    if(!check) {
-        return;
+    for(let discount in newEvent.discount) {
+        if(!discount.discountRate) {
+            if(discount.rank == 'Bronze') {
+                handleGetInputDiscountRank('body__new__event__right__rank-bronze', 'Bronze', 4);
+                isValid = false;
+            }
+            if(discount.rank == 'Silver') {
+                handleGetInputDiscountRank('body__new__event__right__rank-silver', 'Silver', 5);
+                isValid = false;
+            }
+            if(discount.rank == 'Gold') {
+                handleGetInputDiscountRank('body__new__event__right__rank-gold', 'Gold', 6);
+                isValid = false;
+            }
+            if(discount.rank == 'Diamond') {
+                handleGetInputDiscountRank('body__new__event__right__rank-diamond', 'Diamond', 7);
+                isValid = false;
+            }
+        } 
+    }
+
+    if(isValid) {
+        var options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(newEvent)
+        };
+        fetch(POSTeventAPI, options) 
+            .then(function(response) {
+                response.json();
+            })
+            .then(function() {
+                listEvent = [];
+                newEvent = 
+                {     
+                    "id": null,
+                    "name": null,
+                    "description": null,
+                    "beginTime": null,
+                    "endTime": null,
+                    "discount": [
+                        {
+                            "rank": "Bronze",
+                            "discountRate": null
+                          },
+                          {
+                            "rank": "Silver",
+                            "discountRate": null
+                          },
+                          {
+                            "rank": "Gold",
+                            "discountRate": null
+                          },
+                          {
+                            "rank": "Diamond",
+                            "discountRate": null
+                          }
+                    ]
+                }
+                closeNewEventBtn();
+                getEvents();
+            });
     } 
-
-    
-    var options = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify(newEvent)
-    };
-    fetch(newEventAPI, options) 
-        .then(function(response) {
-            response.json();
-        })
-        .then(function() {
-            closeNewEventBtn();
-            getEvents();
-        });
-    
 }

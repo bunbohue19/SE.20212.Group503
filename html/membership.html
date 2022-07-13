@@ -87,6 +87,11 @@
                         <div class="body__main__bar__rank">
                             RANK
                         </div>
+                        <div class="body__main__bar__purchased">
+                            <div class="separate">|</div>
+                            PURCHASED
+                            <div class="separate"></div>
+                        </div>
                     </div>
                     <div class="body__main__list">
                         <!-- <div class="body__main__list__item">
@@ -112,8 +117,8 @@
                         </div> -->
                     </div>
                     <div class="body__main__btn">
-                        <div class="body__main__new-btn btn primary-btn" onclick="openNewMembership()">New</div>
-                        <div class="body__main__manage__discount-btn btn primary-btn" onclick="openManageDiscount()">Manage discount</div>
+                        <div class="body__main__new-btn btn primary-btn" onclick="openNewMembershipBtn()">New</div>
+                        <!-- <div class="body__main__manage__discount-btn btn primary-btn" onclick="openManageRate()">Manage Rate</div> -->
                     </div>
 
                     <!-- new membership form -->
@@ -140,30 +145,30 @@
                     <!-- end new membership form -->
 
                     <!-- manage discount for rank -->
-                    <div class="body__manage__discount">
-                        <!-- <div class="body__manage__discount__input">
-                            <div class="body__manage__discount__bronze">
+                    <div class="body__manage__rate">
+                        <!-- <div class="body__manage__rate__input">
+                            <div class="body__manage__rate__bronze">
                                 <span>Bronze</span>
                                 <input type="text" class="manage__discount__input-text">
                             </div>
-                            <div class="body__manage__discount__silver">
+                            <div class="body__manage__rate__silver">
                                 <span>Silver</span>
                                 <input type="text" class="manage__discount__input-text">
                             </div>
-                            <div class="body__manage__discount__gold">
+                            <div class="body__manage__rate__gold">
                                 <span>Gold</span>
                                 <input type="text" class="manage__discount__input-text">
                             </div>
-                            <div class="body__manage__discount__diamond">
+                            <div class="body__manage__rate__diamond">
                                 <span>Diamond</span>
                                 <input type="text" class="manage__discount__input-text">
                             </div>
                         </div>
-                        <div class="body__manage__discount__btn">
-                            <div class="body__manage__discount__apply btn primary-btn">
+                        <div class="body__manage__rate__btn">
+                            <div class="body__manage__rate__apply btn primary-btn">
                                 Apply
                             </div>
-                            <div class="body__manage__discount__cancel btn primary-btn" onclick="closeManageDiscount()">
+                            <div class="body__manage__rate__cancel btn primary-btn" onclick="closeManageRate()">
                                 Cancel
                             </div>
                         </div> -->
@@ -178,6 +183,6 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
     <!-- add custom script -->
-    <script src="../js/membership.js"></script>
+    <script type="module" src="../js/membership.js"></script>
 </body>
 </html>

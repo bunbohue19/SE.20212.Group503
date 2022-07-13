@@ -1,21 +1,23 @@
 
 var listMember = [];
 
-var membershipAPI = "http://localhost:3000/getMembership"
+var GETmembershipAPI = "http://localhost:3000/getMembership"
+var POSTmembershipAPI = "http://localhost:3000/getMembership"
+var PUTmembershipAPI = "http://localhost:3000/getMembership"
+var DELETEmembershipAPI = "http://localhost:3000/getMembership"
 
 var bodyMainList = document.getElementsByClassName("body__main__list")[0];
 var bodyNewMembership = document.getElementsByClassName("body__new__membership")[0];
-var bodyManageDiscount = document.getElementsByClassName("body__manage__discount")[0];
+var bodyManageRate = document.getElementsByClassName("body__manage__rate")[0];
 
 function start() {
     getMemberships();
-    
 }
 
 start();
 
 function getMemberships(){
-    fetch(membershipAPI)
+    fetch(GETmembershipAPI)
     .then(function(response){
         return response.json();
     })
@@ -25,13 +27,6 @@ function getMemberships(){
     });
 }
 
-function getInvalidMessage(message) {
-    var invalidMessage = `
-                            <img src="../images/info.png" class="invalid__input-icon" alt="">
-                            <p>${message}</p>
-    `
-    return invalidMessage;
-}
 
 //show membership
 function showMemberShip() {
@@ -41,23 +36,28 @@ function showMemberShip() {
         bodyMainList.innerHTML +=   `
                                 <div class="body__main__list__item" onclick="openEditMembership(${i})">
                                     <div class="body__main__bar__id">
-                                        ${listMember[i].memberID}
+                                        ${listMember[i].id}
                                     </div>
                                     <div class="body__main__bar__name">
                                         <div class="separate">|</div>
-                                            ${listMember[i].memberName}
+                                            ${listMember[i].name}
                                         <div class="separate">|</div>
                                     </div>
                                     <div class="body__main__bar__phone">
-                                        ${listMember[i].memberPhone}
+                                        ${listMember[i].phone}
                                     </div>
                                     <div class="body__main__bar__point">
                                         <div class="separate">|</div>
-                                            ${listMember[i].memberPoint}
+                                            ${listMember[i].point}
                                         <div class="separate">|</div>
                                     </div>
                                     <div class="body__main__bar__rank">
-                                        ${listMember[i].memberRank}
+                                        ${listMember[i].rank}
+                                    </div>
+                                    <div class="body__main__bar__purchased">
+                                        <div class="separate">|</div>
+                                        ${listMember[i].purchased}
+                                        <div class="separate"></div>
                                     </div>
                                 </div>
     `
@@ -69,15 +69,15 @@ function showMemberShip() {
 // add and edit membership information
 var member = {}
 
-function openNewMembership() {
-    closeNewMembership();
+window.openNewMembershipBtn = function() {
+    closeNewMembershipBtn();
     bodyNewMembership.innerHTML = `
                         <div class="body__new__membership__input">
                             <div class="new__membership__input__name">
                                 <span>Name</span>
                                 <input type="text" class="new__membership__input-text" onfocus="removeInvalidEffect('new__membership__input__name', 0)" onblur="handleGetInputName('new__membership__input__name', 0, value)">
                                 <div class="invalid__input-message">
-                                </div>    
+                                </div>
                             </div>
                             <div class="new__membership__input__phone">
                                 <span>Phone</span>
@@ -90,18 +90,26 @@ function openNewMembership() {
                             <div class="new__membership__add-btn  btn primary-btn" onclick="handleAddMembership()">
                                 Add
                             </div>
-                            <div class="new__membership__cancel-btn  btn primary-btn" onclick="closeNewMembership()">
+                            <div class="new__membership__cancel-btn  btn primary-btn" onclick="closeNewMembershipBtn()">
                                 Cancel
                             </div>
                         </div>
     `
 }
 
-function closeNewMembership() {
+window.closeNewMembershipBtn = function() {
     bodyNewMembership.innerHTML = ``;
 }
 
-function handleInvalidEffect(validPath, index,message) {
+window.getInvalidMessage = function(message) {
+    var invalidMessage = `
+                            <img src="../images/info.png" class="invalid__input-icon" alt="">
+                            <p>${message}</p>
+    `
+    return invalidMessage;
+}
+
+window.handleInvalidEffect = function(validPath, index, message) {
     let invalidBorder = document.getElementsByClassName("new__membership__input-text")[index];
     invalidBorder.classList.add("invalid__input-border");
 
@@ -109,7 +117,7 @@ function handleInvalidEffect(validPath, index,message) {
     invalidMessage.innerHTML = getInvalidMessage(message);
 }
 
-function removeInvalidEffect(path, index) {
+window.removeInvalidEffect = function(path, index) {
     let containerInput = document.getElementsByClassName(path)[0];
     let invalidMessage = containerInput.getElementsByClassName("invalid__input-message")[0];
     invalidMessage.innerHTML = ``
@@ -120,34 +128,44 @@ function removeInvalidEffect(path, index) {
     }
 }
 
-function handleGetInputName(validPath, index, value) {
+window.handleGetInputName = function(validPath, index, value) {
     if(value) {
-        member.memberName = value;
+        member.name = value;
     } else {
         handleInvalidEffect(validPath, index, 'Enter a name!');
     }
 }
 
-function handleGetInputPhone(validPath, index, value) {
+window.handleGetInputPhone = function(validPath, index, value) {
     if(value) {
         if(isNaN(value)) {
             handleInvalidEffect(validPath, index, 'Phone must be number!');
         } else {
-            member.memberPhone = value;
+            var isUnique = true;
+            for(let i = 0; i < listMember.length; i++) {
+                if(listMember[i].phone == value) {
+                    isUnique = false;
+                }
+            }
+            if(isUnique) {
+                member.phone = value;
+            } else {
+                handleInvalidEffect(validPath, index, 'Phone number has already been registered!');
+            }
         }
     } else {
         handleInvalidEffect(validPath, index, 'Enter a phone number!');
     }
 }
 
-function handleAddMembership() {
+window.handleAddMembership = function() {
     let isValid = true;
-    if(!member.memberName) {
+    if(!member.name) {
         handleInvalidEffect('new__membership__input__name', 0, 'Enter a name!');
         isValid = false;
     }
     
-    if(!member.memberPhone) {
+    if(!member.phone) {
         handleInvalidEffect('new__membership__input__phone', 1, 'Enter a phone number!');
         isValid = false;
     }
@@ -156,33 +174,46 @@ function handleAddMembership() {
         return;
     }
 
-    member.memberID = listMember[listMember.length-1].memberID+1;
-    member.memberPoint = 1000;
-    member.memberRank = "Bronze";
+    member.id = listMember[listMember.length-1].id+1;
+    member.point = 0;
+    member.purchased = 0;
+    member.rank = "Bronze";
 
-    listMember.push(member);
-    member = {};
-
-    closeNewMembership();
-    showMemberShip();
+    
+    //post to backend
+    var options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(member)
+    };
+    fetch(POSTmembershipAPI, options) 
+        .then(function(response) {
+            response.json();
+        })
+        .then(function() {
+            listMember = {};
+            member = {};
+            closeNewMembershipBtn();
+            getMemberships();
+        });
 }
 
 // edit membership information 
-function openEditMembership(index) {
-    closeNewMembership();
-    handleGetInputName('new__membership__input__name', 0, listMember[index].memberName);
-    handleGetInputPhone('new__membership__input__phone', 1, listMember[index].memberPhone);
+window.openEditMembership = function(index) {
+    closeNewMembershipBtn();
     bodyNewMembership.innerHTML = `
                         <div class="body__new__membership__input">
                             <div class="new__membership__input__name">
                                 <span>Name</span>
-                                <input type="text" value="${listMember[index].memberName}" class="new__membership__input-text" onfocus="removeInvalidEffect('new__membership__input__name', 0)" onblur="handleGetInputName('new__membership__input__name', 0, value)">
+                                <input type="text" value="${listMember[index].name}" class="new__membership__input-text" onfocus="removeInvalidEffect('new__membership__input__name', 0)" onblur="handleGetInputName('new__membership__input__name', 0, value)">
                                 <div class="invalid__input-message">
                                 </div>    
                             </div>
                             <div class="new__membership__input__phone">
                                 <span>Phone</span>
-                                <input type="text" value="${listMember[index].memberPhone}" class="new__membership__input-text" onfocus="removeInvalidEffect('new__membership__input__phone', 1)" onblur="handleGetInputPhone('new__membership__input__phone', 1, value)">
+                                <input type="text" value="${listMember[index].phone}" class="new__membership__input-text" onfocus="removeInvalidEffect('new__membership__input__phone', 1)" onblur="handleGetInputPhone('new__membership__input__phone', 1, value)">
                                 <div class="invalid__input-message">
                                 </div>  
                             </div>
@@ -194,22 +225,24 @@ function openEditMembership(index) {
                             <div class="new__membership__add-btn  btn primary-btn" onclick="handleDeleteMembership(${index})">
                                 Delete
                             </div>
-                            <div class="new__membership__cancel-btn  btn primary-btn" onclick="closeNewMembership()">
+                            <div class="new__membership__cancel-btn  btn primary-btn" onclick="closeNewMembershipBtn()">
                                 Cancel
                             </div>
                         </div>
     `
+    member.name = listMember[index].name;
+    member.phone = listMember[index].phone;
 }
 
 
-function handleEditMembership(index) {
+window.handleEditMembership = function(index) {
     let isValid = true;
-    if(!member.memberName) {
+    if(!member.name) {
         handleInvalidEffect('new__membership__input__name', 0, 'Enter a name!');
         isValid = false;
     }
     
-    if(!member.memberPhone) {
+    if(!member.phone) {
         handleInvalidEffect('new__membership__input__phone', 1, 'Enter a phone number!');
         isValid = false;
     }
@@ -217,56 +250,86 @@ function handleEditMembership(index) {
     if(!isValid) {
         return;
     }
+    
+    member.point = listMember[index].point;
+    member.rank = listMember[index].rank;
+    member.purchased = listMember[index].purchased;
 
-    listMember[index].memberName = member.memberName;
-    listMember[index].memberPhone = member.memberPhone;
-
-    member = {};
-
-    closeNewMembership();
-    showMemberShip();
+    var options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(member)
+    };
+    fetch(PUTmembershipAPI + '/' + listMember[index].id, options) 
+        .then(function(response) {
+            response.json();
+        })
+        .then(function() {
+            listMember = {};
+            member = {};
+            closeNewMembershipBtn();
+            getMemberships();
+        });
 }
 
 
-function handleDeleteMembership(index) {
-    listMember.splice(index, 1);
-    closeNewMembership();
-    showMemberShip();
+window.handleDeleteMembership = function(index) {
+    var options = {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+          },
+    };
+    fetch(DELETEmembershipAPI + '/' + listMember[index].id, options) 
+        .then(function(response) {
+            response.json();
+        })
+        .then(function() {
+            listMember = {};
+            member = {};
+            closeNewMembershipBtn();
+            getMemberships();
+        });
 }
 
 // manage discount
 
-function openManageDiscount() {
-    bodyManageDiscount.innerHTML =  `
-                                    <div class="body__manage__discount__input">
-                                        <div class="body__manage__discount__bronze">
+/*
+function openManageRate() {
+    bodyManageRate.innerHTML =  `
+                                    <div class="body__manage__rate__input">
+                                        <div class="body__manage__rate__bronze">
                                             <span>Bronze</span>
-                                            <input type="text" class="manage__discount__input-text">
+                                            <input type="text" class="manage__rate__input-text">
                                         </div>
-                                        <div class="body__manage__discount__silver">
+                                        <div class="body__manage__rate__silver">
                                             <span>Silver</span>
-                                            <input type="text" class="manage__discount__input-text">
+                                            <input type="text" class="manage__rate__input-text">
                                         </div>
-                                        <div class="body__manage__discount__gold">
+                                        <div class="body__manage__rate__gold">
                                             <span>Gold</span>
-                                            <input type="text" class="manage__discount__input-text">
+                                            <input type="text" class="manage__rate__input-text">
                                         </div>
-                                        <div class="body__manage__discount__diamond">
+                                        <div class="body__manage__rate__diamond">
                                             <span>Diamond</span>
-                                            <input type="text" class="manage__discount__input-text">
+                                            <input type="text" class="manage__rate__input-text">
                                         </div>
                                     </div>
-                                    <div class="body__manage__discount__btn">
-                                        <div class="body__manage__discount__apply btn primary-btn">
+                                    <div class="body__manage__rate__btn">
+                                        <div class="body__manage__rate__apply btn primary-btn">
                                             Apply
                                         </div>
-                                        <div class="body__manage__discount__cancel btn primary-btn" onclick="closeManageDiscount()">
+                                        <div class="body__manage__rate__cancel btn primary-btn" onclick="closeManageRate()">
                                             Cancel
                                         </div>
                                     </div>
     `
 }
 
-function closeManageDiscount() {
-    bodyManageDiscount.innerHTML =  ``;
+function closeManageRate() {
+    bodyManageRate.innerHTML =  ``;
 }
+
+*/

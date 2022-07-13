@@ -16,7 +16,8 @@
 .body__main__bar__name,
 .body__main__bar__phone,
 .body__main__bar__rank,
-.body__main__bar__point {
+.body__main__bar__point,
+.body__main__bar__purchased {
     font-family: var(--font);
     font-size: 1.8rem;
     width: 50%;
@@ -25,21 +26,26 @@
     padding-top: 13px;
 }
 
+.body__main__bar__id {
+    width: 20%;
+}
+
 .separate {
     display: inline;
 }
 
 .body__main__bar__name,
-.body__main__bar__point {
-    width: 70%;
+.body__main__bar__point,
+.body__main__bar__purchased {
+    width: 80%;
     justify-content: space-between;
     display: flex;
 }
 
 .body__main__btn {
-    margin: 50px;
+    margin-top: 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
 }
 
 .body__main__list {
@@ -95,7 +101,7 @@
 
 
 /* manage discount */
-.body__manage__discount {
+.body__manage__rate {
     border-radius: 10px;
     top: 20%;
     left: 40%;
@@ -106,33 +112,37 @@
     font-size: 1.8rem;
 }
 
-.body__manage__discount__input {
+.body__manage__rate__input {
     display: block;
 }
 
-.body__manage__discount__bronze,
-.body__manage__discount__silver,
-.body__manage__discount__gold,
-.body__manage__discount__diamond {
+.body__manage__rate__bronze,
+.body__manage__rate__silver,
+.body__manage__rate__gold,
+.body__manage__rate__diamond {
     display: flex;
     justify-content: space-between;
     margin: 50px;
 }
 
-.body__manage__discount__bronze span,
-.body__manage__discount__silver span,
-.body__manage__discount__gold span,
-.body__manage__discount__diamond span{
+.body__manage__rate__bronze span,
+.body__manage__rate__silver span,
+.body__manage__rate__gold span,
+.body__manage__rate__diamond span{
     margin-top: 6px;
 }
 
-.manage__discount__input-text {
+
+
+.manage__rate__input-text {
     border-radius: 5px;
     border: none;
     height: 30px;
+    margin-left: 40px;
+    padding-left: 5px;
 }
 
-.body__manage__discount__btn {
+.body__manage__rate__btn {
     display: flex;
     justify-content: space-between;
     padding: 30px;

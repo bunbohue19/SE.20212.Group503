@@ -78,7 +78,7 @@
                         </div> -->
                     </div>
                     <div class="body__event__popup">
-                        <h2>Information</h2>
+                        <!-- <h2>Information</h2>
                         <div class="body__event__popup__container">
                             <div class="body__event__popup__left">
                                 <ul>
@@ -106,95 +106,99 @@
                                             
                                         </p>
                                     </li>
-                                    
                                 </ul>
                             </div>
                             <div class="body__event__popup__right">
-                                <!-- <div class="event__popup__sale">
-                                    Discount:
+                                <div class="body__event__popup__right__rank">
+                                    <div class="body__event__popup__right__rank-bronze">
+                                        <span>Bronze Discount</span>
+                                        <p class="event__popup__infor">10%</p>
+                                    </div>
+                                    <div class="body__event__popup__right__rank-silver">
+                                        <span>Silver Discount</span>
+                                        <p class="event__popup__infor">20%</p>
+                                    </div>
+                                    <div class="body__event__popup__right__rank-gold">
+                                        <span>Gold Discount</span>
+                                        <p class="event__popup__infor">25%</p>
+                                    </div>
+                                    <div class="body__event__popup__right__rank-diamond">
+                                        <span>Diamond Discount</span>
+                                        <p class="event__popup__infor">30%</p>
+                                    </div>
                                 </div>
-                                <div class="event__popup__right__item">
-                                    <div class="event__popup__right__item__img">
-                                        <img src="../images/food-1.png" alt="">
-                                    </div>
-                                    <span class="event__popup__right__item__name">
-                                        food 1
-                                    </span>
-                                    <span class="event__popup__right__item__discount">
-                                        -20%
-                                    </span>
-                                    <div class="event__popup__item__close">
-                                        <img src="../images/close.png" alt="">
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                         <div class="event__popup__btn">
-                            <!-- <div class="event__popup__delete-btn" onclick="handleDeleteEvent(id)">
+                            <div class="event__popup__delete-btn" onclick="handleDeleteEvent(id)">
                                 <a href="#" class="btn primary-btn">Delete</a> 
+                            </div>
+                            <div class="event__popup__edit-btn" onclick="handleEditEvent(id)">
+                                <a href="#" class="btn primary-btn">Edit</a> 
                             </div>
                             <div class="event__popup__done-btn" onclick="closeInforPopupBtn()">
                                 <a href="#" class="btn primary-btn">Done</a> 
-                            </div> -->
-                        </div>
+                            </div>
+                        </div> -->
                     </div>
-                    <div class="body__newEvent">
-                        <h2>New Event</h2>
-                        <div class="body__newEvent__container">
-                            <div class="body__newEvent__left">
+                    <div class="body__new__event">
+                    <!-- <h2>New Event</h2>
+                        <div class="body__new__event__container">
+                            <div class="body__new__event__left">
                                 <ul>
-                                    <li class="newEvent__name">
+                                    <li class="new__event__name">
                                         <span>Name</span>
-                                        <input type="text" class="newEvent__input-text" onblur="handleGetInputName(value)">
+                                        <input type="text" class="new__event__input-text" onblur="handleGetInputName(value)">
                                     </li>
-                                    <li class="newEvent__description">
+                                    <li class="new__event__description">
                                         <span>Description</span>
-                                        <input type="text" class="newEvent__input-text" onblur="handleGetInputDescription(value)">
+                                        <input type="text" class="new__event__input-text" onblur="handleGetInputDescription(value)">
                                     </li>
-                                    <div class="newEvent__poster-upload">
+                                    <div class="new__event__poster-upload">
                                         <span>Poster</span>
-                                        <label for="fileImage" class=" btn primary-btn newEvent__poster-upload-label">Upload</label>
+                                        <label for="fileImage" class=" btn primary-btn new__event__poster-upload-label">Upload</label>
                                         <input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" required style='display:none' >
                                     </div>
-                                    <li class="newEvent__begin-time">
+                                    <li class="new__event__begin-time">
                                         <span>Start time</span>
-                                        <input type="datetime-local" class="newEvent__input-text" onblur="handleGetInputBeginTime(value)">
+                                        <input type="datetime-local" class="new__event__input-text" onblur="handleGetInputBeginTime(value)">
                                     </li>
-                                    <li class="newEvent__end-time">
+                                    <li class="new__event__end-time">
                                         <span>End time</span>
-                                        <input type="datetime-local" class="newEvent__input-text" onblur="handleGetInputEndTime(value)">
+                                        <input type="datetime-local" class="new__event__input-text" onblur="handleGetInputEndTime(value)">
                                     </li>
                                 </ul>
                             </div>
-                            <div class="body__newEvent__right">
-                                <h2>Select dish</h2>
-                                <div class="body__newEvent__right__list">
-                                    <!-- <div class="body__newEvent__right__item">
-                                        <div class="body__newEvent__right__item__img">
-                                            <img src="../images/food-2.png" alt="">
-                                        </div>
-                                        <div class="body__newEvent__right__item__name">
-                                            food1
-                                        </div>
-                                        <div>
-                                            <input type="text" value="0" class="body__newEvent__right__item__input">
-                                        </div>
-                                    </div> -->
+                            <div class="body__new__event__right">
+                                <h2>Discount Rate</h2>
+                                <div class="body__new__event__right__rank">
+                                    <div class="body__new__event__right__rank-bronze">
+                                        <span>Bronze</span>
+                                        <input type="text" class="new__event__input-text">
+                                    </div>
+                                    <div class="body__new__event__right__rank-silver">
+                                        <span>Silver</span>
+                                        <input type="text" class="new__event__input-text">
+                                    </div>
+                                    <div class="body__new__event__right__rank-gold">
+                                        <span>Gold</span>
+                                        <input type="text" class="new__event__input-text">
+                                    </div>
+                                    <div class="body__new__event__right__rank-diamond">
+                                        <span>Diamond</span>
+                                        <input type="text" class="new__event__input-text">
+                                    </div>
                                 </div>
-                                <!-- <div class="invalid__input-message invalid__input-dish">
-                                    <img src="../images/info.png" class="invalid__input-icon" alt="">
-                                    <p>Discount at least one dish</p>
-                                </div> -->
                             </div>
                         </div>
-                        <div class="newEvent__popup__btn">
-                            <div class="newEvent__popup__create-btn" onclick="handleCreateNewEvent()">
+                        <div class="new__event__popup__btn">
+                            <div class="new__event__popup__create-btn" onclick="handleCreateNewEvent()">
                                 <a href="#" class="btn primary-btn">Create</a> 
                             </div>
-                            <div class="newEvent__popup__close-btn">
+                            <div class="new__event__popup__close-btn">
                                 <a href="#" class="btn primary-btn" onclick="closeNewEventBtn()">Close</a> 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -205,6 +209,6 @@
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
     <!-- add custom script -->
-    <script src="../js/event.js"></script>
+    <script type="module" src="../js/event.js"></script>
 </body>
 </html>

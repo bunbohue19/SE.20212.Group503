@@ -1,0 +1,1 @@
+export let role = 1; // 0 mean staff and 1 mean manager

@@ -1,12 +1,31 @@
 import { role } from './role.js'
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-console.log(role);
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCrtx2Mi4DICXwlwABVb0EIIybBTVqo_Wo",
+  authDomain: "se20212group503.firebaseapp.com",
+  projectId: "se20212group503",
+  storageBucket: "se20212group503.appspot.com",
+  messagingSenderId: "922521069241",
+  appId: "1:922521069241:web:c319a760c14d5ca33add68"
+};
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+import {getStorage, ref as sRef, uploadBytesResumable, getDownloadURL}
+from "https://www.gstatic.com/firebasejs/9.9.0/firebase-storage.js";
+
+var poster = [];
 var listEvent = [];
 var newEvent = 
 {     "id": null,
       "name": null,
       "description": null,
+      "poster": null,
       "beginTime": null,
       "endTime": null,
       "discount": [
@@ -42,6 +61,7 @@ var bodyNewEvent = document.getElementsByClassName("body__new__event")[0]
 
 function start(){
     getEvents();
+    setRole();
 }
 
 start();
@@ -57,6 +77,32 @@ function getEvents(){
     });
 }
 
+function setRole() {
+    var navRole = document.getElementsByClassName("nav__role")[0];
+    if(role == 1) {
+        navRole.innerHTML = `
+                            <div class="nav__role__img">
+                                <a href="home.html">
+                                    <img src="../images/manager.png" alt="thenf">
+                                </a>
+                            </div>
+                            <p class="nav__manager__text">
+                                Manager
+                            </p>
+        `
+    } else if(role == 0) {
+        navRole.innerHTML = `
+                        <div class="nav__role__img">
+                            <a href="home.html">
+                                <img src="../images/staff.png" alt="thenf">
+                            </a>
+                        </div>
+                        <p class="nav__staff__text">
+                            Staff
+                        </p>
+    `
+    }
+}
 
 //show event handler
 window.showEvents = function(){
@@ -65,10 +111,10 @@ window.showEvents = function(){
             bodyEventList.innerHTML +=  ` 
                                         <div class="body__event__item" onclick="showEventInfor(${i})">
                                             <a href="#" class="body__event__item__icon">
-                                                <img src="../images/eventsMedia1.png" alt="">
+                                                <img src="${listEvent[i].poster}" alt="">
                                             </a>
                                             <p class="body__event__item__title">
-                                                ${listEvent[i].name}
+                                                ${listEvent[i].id}. ${listEvent[i].name}
                                             </p>
                                         </div>
                                         `
@@ -185,12 +231,14 @@ window.handleDeleteEvent = function(id){
         })
         .then(function() {
             closeInforPopupBtn();
+            poster = [];
             listEvent = [];
             newEvent = 
             {     
                 "id": null,
                 "name": null,
                 "description": null,
+                "poster": null,
                 "beginTime": null,
                 "endTime": null,
                 "discount": [
@@ -233,9 +281,10 @@ window.openEditEvent = function (index) {
     newEvent.beginTime = new Date(listEvent[index].beginTime).toISOString().slice(0, 16);
     newEvent.endTime = new Date(listEvent[index].endTime).toISOString().slice(0, 16);
     newEvent.discount = listEvent[index].discount;
+    newEvent.poster = listEvent[index].poster;
 
     bodyNewEvent.innerHTML = `
-                                <h2>New Event</h2>
+                                <h2>Edit Event</h2>
                                 <div class="body__new__event__container">
                                     <div class="body__new__event__left">
                                         <ul>
@@ -262,7 +311,8 @@ window.openEditEvent = function (index) {
                                             <div class="new__event__poster-upload">
                                                 <span>Poster</span>
                                                 <label for="fileImage" class=" btn primary-btn new__event__poster-upload-label">Upload</label>
-                                                <input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" required style='display:none' >
+                                                <input type="file" id="fileImage" accept="image/png, image/jpeg" style='display:none'>
+                                                <span class="new__event__poster-upload-preview"></span>
                                             </div>
                                             <li class="new__event__begin-time">
                                                 <span>Begin time</span>
@@ -332,9 +382,21 @@ window.openEditEvent = function (index) {
                                     </div>
                                 </div>
     `
+
+    // upload image to firebase
+    const reader = new FileReader();
+    const input = document.getElementById("fileImage");
+    input.type = 'file';
+    input.onchange = e => {
+        poster = e.target.files;
+        reader.readAsDataURL(poster[0]);
+        const preview = document.getElementsByClassName("new__event__poster-upload-preview")[0]
+        preview.innerHTML = "Loading";
+        uploadImage(getImageName());
+    }
 }
 
-window.handleEditEvent = function (index) {
+window.handleEditEvent = async function (index) {
     var isValid = true;
     
     if(!newEvent.name) {
@@ -391,12 +453,14 @@ window.handleEditEvent = function (index) {
                 response.json();
             })
             .then(function() {
+                poster = [];
                 listEvent = [];
                 newEvent = 
                 {     
                     "id": null,
                     "name": null,
                     "description": null,
+                    "poster": null,
                     "beginTime": null,
                     "endTime": null,
                     "discount": [
@@ -451,7 +515,8 @@ window.openNewEventBtn = function () {
                                             <div class="new__event__poster-upload">
                                                 <span>Poster</span>
                                                 <label for="fileImage" class=" btn primary-btn new__event__poster-upload-label">Upload</label>
-                                                <input type="file" th:name="files" id="fileImage" accept="image/png, image/jpeg" required style='display:none' >
+                                                <input type="file" id="fileImage" accept="image/png, image/jpeg" style='display:none'">
+                                                <span class="new__event__poster-upload-preview"></span>
                                             </div>
                                             <li class="new__event__begin-time">
                                                 <span>Begin time</span>
@@ -517,6 +582,17 @@ window.openNewEventBtn = function () {
                                     </div>
                                 </div>
     `
+    // upload image to firebase
+    var reader = new FileReader();
+    var input = document.getElementById("fileImage");
+    input.type = 'file';
+    input.onchange = e => {
+        poster = e.target.files;
+        reader.readAsDataURL(poster[0]);
+        var preview = document.getElementsByClassName("new__event__poster-upload-preview")[0]
+        preview.innerHTML = "Load";
+        uploadImage(getImageName());
+    }
 }
 
 window.closeNewEventBtn = function () {
@@ -567,6 +643,37 @@ window.handleGetInputDescription = function(description) {
     } else {
         handleInvalidEffect('new__event__description', 1, 'Enter a description');
     }
+}
+
+
+async function uploadImage(imageName) {
+    const metaData = {
+        contentType: poster[0].type
+    }
+    const storage = getStorage();
+    const storageRef = sRef(storage, "images/"+imageName);
+    
+    uploadBytesResumable(storageRef, poster[0], metaData)
+        .then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                newEvent.poster = url;
+                var preview = document.getElementsByClassName("new__event__poster-upload-preview")[0]
+                preview.innerHTML = getImageName();
+            });
+        }).catch((error) => {
+            console.error('Upload failed', error);
+        });
+}
+
+
+function getImageName() {
+    var temp = poster[0].name.split('\\');
+    temp = temp.slice((temp.length-1), (temp.length));
+    temp = temp[0].split('.');
+    var fileName = temp.slice(0, -1).join('.');
+    temp = poster[0].name.split('.');
+    var ext = temp.slice((temp.length-1), (temp.length));
+    return (fileName + '.' + ext[0]);
 }
 
 window.handleGetInputBeginTime = function(beginTime) {
@@ -626,7 +733,7 @@ window.handleGetInputDiscountRank = function(path, rank, index, rate) {
     }
 }
 
-window.handleCreateNewEvent = function() {
+window.handleCreateNewEvent = async function() {
     var isValid = true;
     
     if(!newEvent.name) {
@@ -683,12 +790,14 @@ window.handleCreateNewEvent = function() {
                 response.json();
             })
             .then(function() {
+                poster = [];
                 listEvent = [];
                 newEvent = 
                 {     
                     "id": null,
                     "name": null,
                     "description": null,
+                    "poster": null,
                     "beginTime": null,
                     "endTime": null,
                     "discount": [

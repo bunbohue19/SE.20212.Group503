@@ -2,101 +2,27 @@
   "getEvent": [
     {
       "id": 1,
-      "name": "Your day",
-      "description": "For everyone",
-      "beginTime": "2022-06-28T12:19",
-      "endTime": "2022-07-28T12:19",
+      "name": "weeding",
+      "description": "for everyone",
+      "poster": "https://firebasestorage.googleapis.com/v0/b/se20212group503.appspot.com/o/images%2Fwhale.jpg?alt=media&token=4a9aee20-62fc-4c16-807a-3f83673b04ec",
+      "beginTime": "2022-07-19T22:14",
+      "endTime": "2022-07-23T22:14",
       "discount": [
         {
           "rank": "Bronze",
-          "discountRate": 10
+          "discountRate": "10"
         },
         {
           "rank": "Silver",
-          "discountRate": 10
+          "discountRate": "20"
         },
         {
           "rank": "Gold",
-          "discountRate": 20
+          "discountRate": "30"
         },
         {
           "rank": "Diamond",
-          "discountRate": 30
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "name": "Weedding",
-      "description": "For everyone",
-      "beginTime": "2022-06-29T09:19:58.803+00:00",
-      "endTime": "2022-07-29T09:19:58.803+00:00",
-      "discount": [
-        {
-          "rank": "Bronze",
-          "discountRate": 10
-        },
-        {
-          "rank": "Silver",
-          "discountRate": 15
-        },
-        {
-          "rank": "Gold",
-          "discountRate": 20
-        },
-        {
-          "rank": "Diamond",
-          "discountRate": 30
-        }
-      ]
-    },
-    {
-      "id": 3,
-      "name": "Fast sale",
-      "description": "For everyone",
-      "beginTime": "2022-06-29T09:19:58.803+00:00",
-      "endTime": "2022-08-29T09:19:58.803+00:00",
-      "discount": [
-        {
-          "rank": "Bronze",
-          "discountRate": 10
-        },
-        {
-          "rank": "Silver",
-          "discountRate": 15
-        },
-        {
-          "rank": "Gold",
-          "discountRate": 20
-        },
-        {
-          "rank": "Diamond",
-          "discountRate": 30
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "name": "Happy New Year",
-      "description": "For everyone",
-      "beginTime": "2022-06-29T09:19:58.803+00:00",
-      "endTime": "2022-08-29T09:19:58.803+00:00",
-      "discount": [
-        {
-          "rank": "Bronze",
-          "discountRate": 10
-        },
-        {
-          "rank": "Silver",
-          "discountRate": 15
-        },
-        {
-          "rank": "Gold",
-          "discountRate": 20
-        },
-        {
-          "rank": "Diamond",
-          "discountRate": 30
+          "discountRate": "40"
         }
       ]
     }
@@ -104,7 +30,7 @@
   "getMembership": [
     {
       "name": "Then Manh Thang",
-      "phone": "033454657",
+      "phone": "0334546567",
       "point": 0,
       "rank": "Bronze",
       "purchased": 0,
@@ -149,14 +75,6 @@
       "rank": "Bronze",
       "purchased": 0,
       "id": 6
-    },
-    {
-      "name": "Nguyen Thanh Nam",
-      "phone": "134444",
-      "point": 0,
-      "rank": "Bronze",
-      "purchased": 0,
-      "id": 7
     }
   ]
 }

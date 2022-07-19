@@ -116,9 +116,16 @@ a {
     padding-left: 15px;
 }
 
-.nav__role__text {
+.nav__manager__text {
     font-family: var(--font);
     font-size: 1.8rem;
+    text-align: left;
+}
+
+.nav__staff__text {
+    font-family: var(--font);
+    font-size: 1.8rem;
+    margin-left: 15px;
     text-align: left;
 }
 

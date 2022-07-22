@@ -1,10 +1,10 @@
 
 var listMember = [];
 
-var GETmembershipAPI = "http://localhost:3000/getMembership"
-var POSTmembershipAPI = "http://localhost:3000/getMembership"
-var PUTmembershipAPI = "http://localhost:3000/getMembership"
-var DELETEmembershipAPI = "http://localhost:3000/getMembership"
+var GETcustomerAPI = "http://localhost:8081/customer/active"
+var POSTcustomerAPI = "http://localhost:8081/customer"
+var PUTcustomerAPI = "http://localhost:8081/customer"
+var DELETEcustomerAPI = "http://localhost:8081/customer"
 
 var bodyMainList = document.getElementsByClassName("body__main__list")[0];
 var bodyNewMembership = document.getElementsByClassName("body__new__membership")[0];
@@ -17,7 +17,7 @@ function start() {
 start();
 
 function getMemberships(){
-    fetch(GETmembershipAPI)
+    fetch(GETcustomerAPI)
     .then(function(response){
         return response.json();
     })
@@ -36,11 +36,11 @@ function showMemberShip() {
         bodyMainList.innerHTML +=   `
                                 <div class="body__main__list__item" onclick="openEditMembership(${i})">
                                     <div class="body__main__bar__id">
-                                        ${listMember[i].id}
+                                        ${listMember[i].customerId}
                                     </div>
                                     <div class="body__main__bar__name">
                                         <div class="separate">|</div>
-                                            ${listMember[i].name}
+                                            ${listMember[i].customerName}
                                         <div class="separate">|</div>
                                     </div>
                                     <div class="body__main__bar__phone">
@@ -48,7 +48,7 @@ function showMemberShip() {
                                     </div>
                                     <div class="body__main__bar__point">
                                         <div class="separate">|</div>
-                                            ${listMember[i].point}
+                                            ${listMember[i].rankPoint}
                                         <div class="separate">|</div>
                                     </div>
                                     <div class="body__main__bar__rank">
@@ -56,7 +56,7 @@ function showMemberShip() {
                                     </div>
                                     <div class="body__main__bar__purchased">
                                         <div class="separate">|</div>
-                                        ${listMember[i].purchased}
+                                        ${listMember[i].usablePoint}
                                         <div class="separate"></div>
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@ window.removeInvalidEffect = function(path, index) {
 
 window.handleGetInputName = function(validPath, index, value) {
     if(value) {
-        member.name = value;
+        member.customerName = value;
     } else {
         handleInvalidEffect(validPath, index, 'Enter a name!');
     }
@@ -160,7 +160,7 @@ window.handleGetInputPhone = function(validPath, index, value) {
 
 window.handleAddMembership = function() {
     let isValid = true;
-    if(!member.name) {
+    if(!member.customerName) {
         handleInvalidEffect('new__membership__input__name', 0, 'Enter a name!');
         isValid = false;
     }
@@ -174,21 +174,21 @@ window.handleAddMembership = function() {
         return;
     }
 
-    member.id = listMember[listMember.length-1].id+1;
-    member.point = 0;
-    member.purchased = 0;
+    member.customerId = listMember[listMember.length-1].customerId+1;
+    member.rankPoint = 0;
+    member.usablePoint = 0;
     member.rank = "Bronze";
 
     
     //post to backend
     var options = {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
           },
         body: JSON.stringify(member)
     };
-    fetch(POSTmembershipAPI, options) 
+    fetch(POSTcustomerAPI, options) 
         .then(function(response) {
             response.json();
         })
@@ -207,7 +207,7 @@ window.openEditMembership = function(index) {
                         <div class="body__new__membership__input">
                             <div class="new__membership__input__name">
                                 <span>Name</span>
-                                <input type="text" value="${listMember[index].name}" class="new__membership__input-text" onfocus="removeInvalidEffect('new__membership__input__name', 0)" onblur="handleGetInputName('new__membership__input__name', 0, value)">
+                                <input type="text" value="${listMember[index].customerName}" class="new__membership__input-text" onfocus="removeInvalidEffect('new__membership__input__name', 0)" onblur="handleGetInputName('new__membership__input__name', 0, value)">
                                 <div class="invalid__input-message">
                                 </div>    
                             </div>
@@ -230,14 +230,14 @@ window.openEditMembership = function(index) {
                             </div>
                         </div>
     `
-    member.name = listMember[index].name;
+    member.customerName = listMember[index].customerName;
     member.phone = listMember[index].phone;
 }
 
 
 window.handleEditMembership = function(index) {
     let isValid = true;
-    if(!member.name) {
+    if(!member.customerName) {
         handleInvalidEffect('new__membership__input__name', 0, 'Enter a name!');
         isValid = false;
     }
@@ -250,19 +250,20 @@ window.handleEditMembership = function(index) {
     if(!isValid) {
         return;
     }
-    
-    member.point = listMember[index].point;
+
+    member.customerId = listMember[index].customerId;
+    member.rankPoint = listMember[index].rankPoint;
     member.rank = listMember[index].rank;
-    member.purchased = listMember[index].purchased;
+    member.usablePoint = listMember[index].usablePoint;
 
     var options = {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
           },
         body: JSON.stringify(member)
     };
-    fetch(PUTmembershipAPI + '/' + listMember[index].id, options) 
+    fetch(PUTcustomerAPI, options) 
         .then(function(response) {
             response.json();
         })
@@ -280,9 +281,10 @@ window.handleDeleteMembership = function(index) {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
-          },
+        },
+        body: JSON.stringify(listMember[index])
     };
-    fetch(DELETEmembershipAPI + '/' + listMember[index].id, options) 
+    fetch(DELETEcustomerAPI, options) 
         .then(function(response) {
             response.json();
         })

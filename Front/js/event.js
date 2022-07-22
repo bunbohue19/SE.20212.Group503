@@ -48,10 +48,10 @@ var newEvent =
       ]
 }
 
-var GETeventAPI = "http://localhost:3000/getEvent";
-var POSTeventAPI = "http://localhost:3000/getEvent";
-var PUTeventAPI = "http://localhost:3000/getEvent";
-var DELETEeventAPI = "http://localhost:3000/getEvent";
+var GETeventAPI = "http://localhost:8081/event/active";
+var POSTeventAPI = "http://localhost:8081/event";
+var PUTeventAPI = "http://localhost:8081/event";
+var DELETEeventAPI = "http://localhost:8081/event";
 
 var bodyEventList = document.getElementsByClassName("body__event__list")[0]
 var bodyEventItem = document.getElementsByClassName("body__event__item")
@@ -206,7 +206,7 @@ window.showEventInfor = function(index) {
                                     <div class="event__popup__edit-btn" onclick="openEditEvent(${index})">
                                         <a href="#" class="btn primary-btn">Edit</a> 
                                     </div>
-                                    <div class="event__popup__delete-btn" onclick="handleDeleteEvent(${listEvent[index].id})">
+                                    <div class="event__popup__delete-btn" onclick="handleDeleteEvent(${index})">
                                         <a href="#" class="btn primary-btn">Delete</a> 
                                     </div>
         `
@@ -218,14 +218,15 @@ window.closeInforPopupBtn = function () {
     bodyEventPopup.innerHTML = ``;
 }
 
-window.handleDeleteEvent = function(id){
+window.handleDeleteEvent = function (index) {
     var options = {
         method: 'DELETE',
         headers: {
             'Content-Type': 'application/json'
-          },
+        },
+        body: JSON.stringify(listEvent[index])
     };
-    fetch(DELETEeventAPI + '/' + id, options) 
+    fetch(DELETEeventAPI, options) 
         .then(function(response) {
             response.json();
         })
@@ -276,6 +277,7 @@ window.getDiscountRate = function (index, rank) {
 
 window.openEditEvent = function (index) {
     closeInforPopupBtn();
+    newEvent.id = listEvent[index].id;
     newEvent.name = listEvent[index].name;
     newEvent.description = listEvent[index].description;
     newEvent.beginTime = new Date(listEvent[index].beginTime).toISOString().slice(0, 16);
@@ -442,13 +444,13 @@ window.handleEditEvent = async function (index) {
 
     if(isValid) {
         var options = {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
               },
             body: JSON.stringify(newEvent)
         };
-        fetch(PUTeventAPI +'/' + listEvent[index].id, options) 
+        fetch(POSTeventAPI, options) 
             .then(function(response) {
                 response.json();
             })
@@ -777,15 +779,16 @@ window.handleCreateNewEvent = async function() {
         } 
     }
 
+
     if(isValid) {
         var options = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
               },
             body: JSON.stringify(newEvent)
         };
-        fetch(POSTeventAPI, options) 
+        fetch(PUTeventAPI, options) 
             .then(function(response) {
                 response.json();
             })

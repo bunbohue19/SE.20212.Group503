@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/bill.css">
+    <link rel="stylesheet" href="../css/globalStyle.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Bill</title>
+</head>
+<body>
+    <div class="nav">
+        <div class="container">
+            <div class="nav__wrapper">
+                <div class="nav__role">
+                    <div class="nav__role__img">
+                        <a href="home.html">
+                            <img src="../images/manager.png" alt="thenf">
+                        </a>
+                        
+                    </div>
+                    <p class="nav__role__text">
+                        Manager
+                    </p>
+                </div>
+                <div class="nav__search">
+                    <form action="search" class = 'search_form'>
+                        <input type="text" class="nav__search__bar" placeholder="Search" required>
+                        <a href="#" class="nav__search__icon">
+                            <img src="../images/search.png" alt="thenf">
+                        </a>
+                    </form>
+                </div>
+                <span class="material-icons nav_search_icon">
+                    search
+                </span>
+                <div class="nav__logout">
+                    <a href="home.html" class="btn primary-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="menu">
+                <ul class="btn-list ">
+                    <!-- add btn--active to activebutton -->
+                    <li class="btn">
+                        <a href="seat.html">
+                            <span class="material-icons">
+                                event_seat
+                            </span>
+                            Seat
+                        </a>
+                    </li>
+                    <li class="btn">
+                        <a href="#">
+                            <span class="material-icons">
+                                menu
+                            </span>
+                            Menu
+                        </a>
+                    </li>
+                    <li class="btn">
+                        <a href="#">
+                            <span class="material-icons">
+                                event
+                            </span>
+                            Event
+                        </a>
+                    </li>
+                    <li class="btn">
+                        <a href="#">
+                            <span class="material-icons">
+                                person
+                            </span>
+                            Membership
+                        </a>
+                    </li>
+                    <li class="btn">
+                        <a href="#">
+                            <span class="material-icons">
+                                note_alt
+                            </span>
+                            Report
+                        </a>
+                    </li>
+                    <li class="btn btn--active">
+                        <a href="bill.html">
+                            <span class="material-icons">
+                                receipt_long
+                            </span>
+                            Bill
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="content">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Bill ID</th>
+                            <th>Phone</th>
+                            <th>Table</th>
+                            <th>Money</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class = "customer-list">
+                        
+                    </tbody>
+                </table>
+                <div class = "bill bill_detail_infor">
+                    <div class="infor">
+                        <div class = "infor-details">
+                        
+                        </div>
+                        <div class="check-in">
+                            <div class="check-in_btn btn-group">Check in</div>
+                        </div>  
+                        <div class = 'infor-btn'>
+                            <div class="btn-group edit-btn">Edit</div>
+                            <div class="btn-group delete-btn">Delete</div>
+                        </div>
+                    </div>
+                    <div class="bill-display">
+                        <div class="dish-list">
+                            <ul>
+                                <li class='list-item'>
+
+                                </li>
+                            </ul>
+                        </div>
+                        <div class = 'bill-display-btn'>
+                            <div class="btn-group modify-btn">Add/Remove Dishes</div>
+                            <div class="btn-group save-btn">Save</div>
+                        </div>
+                        <div class = 'bill-display-btn'>
+                            <div class="btn-group checkout-btn">Check out</div>
+                            <div class="btn-group cancel-btn">Cancel</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            
+                <div class="new">
+                    <h2>Create a new order</h2>
+                    <form action="" class="create-form">
+                        <label class='new-label' for='input-phone'>Phone</label>
+                        <input class="new-input" type="text" id="input-phone" placeholder='Enter phone'>
+                        <label class='new-label' for='input-name'>Reserved time</label>
+                        <input type="datetime-local" id="input-name" class="new-input">
+                        <!-- <label class='new-label' for='input-customerId'>Customer’s ID</label>
+                        <input class="new-input" type="text" id="input-customerId" placeholder='Enter Customer’s ID'> -->
+                        <label class='new-label' for='select-btn'>Seat</label>
+                        <div id='select-btn'>Select</div>
+                    </form>
+                    <div class="new__btn-group">
+                        <div class="btn-group done-btn new__done-btn">Done</div>
+                        <div class="btn-group checkout-btn new__cancel-btn">Cancel</div>
+                    </div>
+                </div>
+                <div class="bill dish-select">
+                    <div class="dish-select__header">
+                        <h1>Select Dish</h1>
+                    </div>
+                    <div class="dish-select__body">
+                        <div class="dish-row">
+                            
+                        </div>
+                    </div>
+                    <div class="dish-select__footer">
+                        <div class="btn-group done-btn dish-select__btn-done">Done</div>
+                        <div class="btn-group cancel-btn dish-select__btn-cancel">Cancel</div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="bill select-table">
+                <div class="select-table_container">
+                    <div class="row">
+                        
+                    </div>
+                </div>
+                <div class="select-table__bnt-group">
+                    <div class="table-btn table__done-btn">Done</div>
+                    <div class="table-btn table__cancel-btn">Cancel</div>
+                </div>
+            </div>
+            <div class="create-btn primary-btn">
+                Create
+            </div>
+            
+            <div class="edit">
+                <h2>Edit bill</h2>
+                <form action="" class="create-form">
+                    <label class='edit-label' for='edit-input-name'>Reserved time</label>
+                    <input class="edit-input" type="time" id="edit-input-name" placeholder='Enter time'>
+                    <label class='edit-label' for='edit-input-phone'>Phone</label>
+                    <input class="edit-input" type="text" id="edit-input-phone" placeholder='Enter phone'>
+                    <label class='edit-label' for='edit-select-btn'>Seat</label>
+                    <div id='edit-select-btn'>Select</div>
+                </form>
+                <div class="edit__btn-group">
+                    <div class="btn-group edit__done-btn">Done</div>
+                    <div class="btn-group edit__cancel-btn">Cancel</div>
+                </div>
+            </div>
+            
+            <div class="bill edit-select-table">
+                <div class="edit-select-table_container">
+                    <div class="row">
+            
+                    </div>
+                </div>
+                <div class="edit-select-table__bnt-group">
+                    <div class="table-btn table__done-btn">Done</div>
+                    <div class="table-btn table__cancel-btn">Cancel</div>
+                </div>
+            </div>
+
+            <div class="payment">
+                <div class="payment__header">
+                    <div>
+                        <span class="material-icons">
+                            receipt_long
+                        </span>
+                        <h2>Restaurant Receipt</h2>
+                    </div>
+                    <div class="order__infor billId">
+                        <span>Bill ID: </span>
+                        <span></span>
+                    </div>
+                    <div class="order__infor seat">
+                        <span>Seat: </span>
+                        <span></span>
+                    </div>
+                   
+                    <div class=" order__infor customerName">
+                        <span>Customer phone: </span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="payment__body">
+                    <table class="payment__table">
+                        <thead>
+                            <tr>
+                                <th>Ordered items</th>
+                                <th>Quantity</th>
+                                <th>Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="payment__footer">
+                    <div class="payment__des payment__method">
+                        <span>Payment Method: </span>
+                        <span>Cash</span>
+                    </div>
+                    <div class="payment__infor">
+                        <div class="payment__des paymentAmount">
+                            <span>Total: </span>
+                            <span>33$</span>
+                        </div>
+                        <div class="payment__des paymentDiscount">
+                            <span>Discount(10%): </span>
+                            <span>10$</span>
+                        </div>
+                        <div class="payment__des paidPointPay">
+                            <span>Paid point: </span>
+                            <span>0</span>
+                        </div>
+                        <div class="payment__des totalPayment">
+                            <span>Total pay: </span>
+                            <span>23$</span>
+                        </div>
+                        
+                    </div>
+                    <div class="payment__btn">
+                        <div class="btn-group pay-btn">Pay</div>
+                        <div class="btn-group payment__cancel-btn">Cancel</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+    <script type ="module" src = '../js/bill.js'></script>
+</body>
+
+</html>

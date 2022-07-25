@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/globalStyle.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- aos css -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- Include JS File Here -->
+    <script src="../js/login.js"></script>
+</head>
+<body>
+    <div class = "nav">
+        <div class="container">
+            <div class="nav__wrapper">
+                <a href="home.html" class="logo">
+                    <img src="../images/logo.png" alt="thenf">
+                </a>
+                <nav>
+                    <div class="nav__icon">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            >
+                            <line x1="3" y1="12" x2="21" y2="12" />
+                            <line x1="3" y1="6" x2="21" y2="6" />
+                            <line x1="3" y1="18" x2="21" y2="18" />
+                        </svg>
+                    </div>
+                    <div class="nav__bgOverlay"> </div>
+                    <ul class="nav__list">
+                        <div class="nav__close ">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                >
+                                <line x1="18" y1="6" x2="6" y2="18" />
+                                <line x1="6" y1="6" x2="18" y2="18" />
+                            </svg>
+                        </div>
+
+                        <div class="nav__list__wrapper">
+                            <li>
+                               <a href="home.html" class="nav__link">Home</a> 
+                            </li>
+                            <li>
+                                <a href="login.html" class="btn primary-btn">Manager</a> 
+                            </li>
+                            <li>
+                                <a href="login.html" class="btn primary-btn">Staff</a> 
+                            </li>
+                        </div>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="contain">
+        <div class="main">
+            <img src="../images/manager.png" alt="thenf">
+            <form id="form_id" method="post" name="myform">
+                <p>ID</p>
+                <input type="text" name="ID" id="ID"/>
+                <p>Password</p>
+                <input type="password" name="password" id="password"/>
+                <input type="button" value="Login" id="submit" onclick="validate()"/>
+            </form>   
+        </div>
+    </div>
+</body>
+</html>

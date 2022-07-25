@@ -1,0 +1,95 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.active {
+    background-color: #C3C3C4;
+    background: linear-gradient(180deg, #1326D6, #BDBEC0);
+}
+
+.tab {
+    height: 50px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #aaa;
+    background-color: #f1f1f1;
+}
+.active-tab {
+    border-radius: 15px;
+    background: linear-gradient(180deg, #484848 0%, rgba(114, 112, 112, 0.3) 100%);;
+}
+.tab button {
+    width: 50%;
+    font-size: 20px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+/* Create an active/current tablink class */
+.tab button .active {
+    background-color: #ccc;
+}
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+table, th, td{
+    border-collapse: collapse;
+}
+table {
+    width: 100%;
+}
+th {
+    height: 40px;
+    background-color: #525252;
+    color: #fff;
+    border: 1px solid #525252;
+}
+td {
+    height: 60px;
+    text-align: center; 
+    vertical-align: middle;
+    border-bottom: 5px solid #C4C4C4;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  .chartMenu {
+    width: 100vw;
+    height: 40px;
+    background: #1A1A1A;
+    color: rgba(255, 26, 104, 1);
+  }
+  .chartMenu p {
+    padding: 10px;
+    font-size: 20px;
+  }
+  .chartCard {
+    width: 100vw;
+    height: calc(100vh - 40px);
+    background: rgba(255, 26, 104, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .chartBox {
+    width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 3px rgba(255, 26, 104, 1);
+    background: white;
+  }

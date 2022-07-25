@@ -94,6 +94,7 @@
 .event__popup__description p {
     height: 100px;
 }
+
 .event__popup__btn {
     display: flex;
     justify-content: space-between;

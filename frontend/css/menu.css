@@ -1,0 +1,347 @@
+.body__menu__infor h2 {
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 2.8rem;
+    gap: 1rem;
+    padding-left: 50px;
+}
+
+/* menu__combo lists */
+.body__menu__list {
+    margin-top: 15px;
+    display: flex;
+    align-items: stretch;
+    justify-content: left;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.body__menu__item {
+    background-color: var(--lightGreen-1);
+    text-align: center;
+    border-radius: 12px;
+    width: 250px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+.body__menu__item__icon {
+    padding: 10px 10px;
+    border-radius: 50px;
+}
+
+.body__menu__item__title {
+    font-size:  1.8rem;
+    font-family: var(--font);
+    font-weight: 500;
+    margin-bottom:  0.5rem;
+    line-height: 1.1em;
+    color: var(--black-1);
+}
+
+
+/* show combo */
+.body__menu__show-combo {
+    position: fixed;
+    border-radius: 12px;
+    top: 15%;
+    left: 30%;
+    width: 800px;
+    background-color: var(--lightGreen-1);
+}
+
+.body__menu__show-combo h2 {
+    padding-top: 25px;
+    font-weight: 400;
+    font-size: 2rem;
+    font-family: var(--font);
+    padding-left: 36%;
+}
+
+
+
+.show-combo__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.show-combo__left {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.show-combo__left__name,
+.show-combo__left__description,
+.show-combo__left__category,
+.show-combo__left__cost {
+    font-family: var(--font);
+    font-size: 400;
+    color: var(--black-1);
+    margin-left: 20px;
+}
+
+.show-combo__left__description p {
+    height: 100px;
+}
+
+.show-combo__text {
+    display: flex;
+    width: 300px;
+    height: auto;
+    min-height: 40px;
+    align-items: center;
+    padding-left: 10px;
+    background-color: var(--white-2);
+    color: var(--black-1);
+    margin-bottom: 40px;
+    margin-top: 5px;
+    border-radius: 10px;
+}
+
+.show-combo__right {
+    width: 50%;
+    max-height: 400px;
+    margin-left: 20px;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.show-combo__right__list {
+    margin-top: 20px;
+    overflow: auto;
+}
+
+.show-combo__right__item {
+    font-family: var(--font);
+    font-size: 1.8rem;
+    width: 93%;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    background-color: var(--white-2);
+    min-height: 70px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.show-combo__right__item-image {
+    width: 70px;
+    padding-left: 15px;
+}
+
+.show-combo__right__item__name {
+    width: 60%;
+}
+
+.show-combo__button {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+
+/* show dish  */
+.body__menu__show-dish {
+    position: fixed;
+    border-radius: 12px;
+    top: 15%;
+    left: 40%;
+    width: 350px;
+    background-color: var(--lightGreen-1);
+}
+
+.body__menu__show-dish h2 {
+    padding-top: 20px;
+    font-weight: 400;
+    font-size: 2rem;
+    font-family: var(--font);
+    padding-left: 25%;
+}
+
+/* newcombo */
+.body__menu__new-combo {
+    position: fixed;
+    border-radius: 12px;
+    top: 15%;
+    left: 30%;
+    width: 900px;
+    background-color: var(--lightGreen-1);
+}
+
+.body__menu__new-combo h2 {
+    padding-top: 25px;
+    font-weight: 400;
+    font-size: 2rem;
+    font-family: var(--font);
+    padding-left: 42%;
+}
+
+.new-dish__container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.new-dish__left {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.new-dish__left__name,
+.new-dish__left__description,
+.new-dish__left__category,
+.new-dish__left__cost,
+.new-dish__poster {
+    margin-top: 20px;
+    font-family: var(--font);
+    font-size: 400;
+    color: var(--black-1);
+    margin-left: 20px;
+}
+
+.new-dish__left__description input {
+    height: 100px;
+}
+
+
+.new-dish__poster {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.new-dish__poster-label {
+    font-family: var(--font);
+    font-size: 1.5rem;
+    border-radius: 8px;
+    margin-left: 30px;
+    margin-top: 20px;
+    align-items: center;
+    cursor: pointer;
+}
+
+.new-dish__right {
+    width: 50%;
+    max-height: 400px;
+    margin-left: 20px;
+    text-align: center;
+    padding-right: 20px;
+}
+
+.new-dish__right__list {
+    margin-top: 20px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.new-dish__right__item {
+    width: 93%;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    background-color: var(--white-2);
+    min-height: 70px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.new-dish__right__item-image {
+    width: 70px;
+    padding-left: 15px;
+}
+
+.new-dish__right__item__name,
+.new-dish__right__item__quantity {
+    width: 40%;
+    font-size: 1.8rem;
+    font-family: var(--font);
+}
+
+.increase__icon,
+.decrease__icon {
+    width: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 3px;
+}
+
+.new-dish__button {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+}
+
+.body__menu__new-dish__btn {
+    background-color: var(--lightGreen-1);
+    text-align: center;
+    border-radius: 12px;
+    width: 250px;
+    min-height: 200px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    cursor: pointer;
+}
+
+.body__new-dish__btn__icon {
+    align-content: center;
+    margin-top: 70px;
+    width: 70px;
+}
+
+.input-text {
+    width: 410px;
+    border-radius: 5px;
+    border: none;
+    height: auto;
+    min-height: 30px;
+    font-size: 1.8rem;
+    padding: 15px 10px;
+    display: flex;
+    height: 30px;
+    margin: 10px 0;
+    border: 1px solid var(--white-2);
+}
+
+
+/* new dish */
+.body__menu__new-dish {
+    position: fixed;
+    border-radius: 12px;
+    top: 15%;
+    left: 40%;
+    width: 450px;
+    background-color: var(--lightGreen-1);
+}
+
+.body__menu__new-dish h2 {
+    padding-top: 25px;
+    font-weight: 400;
+    font-size: 2rem;
+    font-family: var(--font);
+    padding-left: 38%;
+}
+
+
+/* invalid */
+
+/* validation */
+.invalid__input-border {
+    border: 1px solid var(--red-1);
+}
+
+.invalid__input-icon {
+    width: 15px;
+}
+
+.invalid__input-message {
+    margin-left: 10px;
+    display: flex;
+}
+
+
+.invalid__input-message p {
+    margin-left: 10px;
+    font-size: 1.4rem;
+    color: var(--red-1);
+}

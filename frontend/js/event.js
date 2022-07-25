@@ -786,7 +786,7 @@ window.handleCreateNewEvent = async function() {
             headers: {
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify(newEvent)
+            body: JSON.stringify(newDish)
         };
         fetch(PUTeventAPI, options) 
             .then(function(response) {
@@ -823,7 +823,7 @@ window.handleCreateNewEvent = async function() {
                     ]
                 }
                 closeNewEventBtn();
-                getEvents();
+                start();
             });
     } 
 }

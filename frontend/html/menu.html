@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/globalStyle.css">
+    <link rel="stylesheet" href="../css/menu.css">
+    <!-- aos css -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <div class="nav">
+        <div class="container">
+            <div class="nav__wrapper">
+                <div class="nav__role">
+                    <div class="nav__role__img">
+                        <a href="home.html">
+                            <img src="../images/manager.png" alt="thenf">
+                        </a>
+                    </div>
+                    <p class="nav__role__text">
+                        Manager
+                    </p>
+                </div>
+                <div class="nav__logout">
+                    <a href="#" class="btn primary-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="body">
+        <div class="container">
+            <div class="body__wrapper">
+                <div class="body__menu">
+                    <ul>
+                        <li>
+                            <a href="./seat.html" class="btn primary-btn menu-btn"> Seat</a>
+                        </li>
+                        <li>
+                            <a href="./menu.html" class="btn primary-btn menu-btn"> Menu</a>
+                        </li>
+                        <li>
+                            <a href="./event.html" class="btn primary-btn menu-btn"> Event</a>
+                        </li>
+                        <li>
+                            <a href="./membership.html" class="btn primary-btn menu-btn"> Membership</a>
+                        </li>
+                        <li>
+                            <a href="./reprot.html" class="btn primary-btn menu-btn"> Report</a>
+                        </li>
+                        <li>
+                            <a href="./bill.html" class="btn primary-btn menu-btn"> Bill</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="body__menu__infor">
+                    <div class="body__menu__combo">
+                        <h2>Combo</h2>
+                        <div class="body__menu__list">
+                            <!--
+                            <div class="body__menu__item">
+                                <a href="#" class="body__menu__item__icon">
+                                    <img src="../images/food-1.png" alt="">
+                                </a>
+                                <p class="body__menu__item__title">
+                                    Combo 1
+                                </p>
+                            </div>
+                            -->
+                        </div>    
+                    </div>
+                    <div class="body__menu__appetizer">
+                        <h2>Appetizer</h2>
+                        <div class="body__menu__list">
+                            <!-- <div class="body__menu__item">
+                                <a href="#" class="body__menu__item__icon">
+                                    <img src="../images/food-1.png" alt="">
+                                </a>
+                                <p class="body__menu__item__title">
+                                    appetizer 1
+                                </p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="body__menu__main-course">
+                        <h2>Main</h2>
+                        <div class="body__menu__list">
+                            <!-- <div class="body__menu__item">
+                                <a href="#" class="body__menu__item__icon">
+                                    <img src="../images/food-1.png" alt="">
+                                </a>
+                                <p class="body__menu__item__title">
+                                    Main 1
+                                </p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="body__menu__dessert">
+                        <h2>Dessert</h2>
+                        <div class="body__menu__list">
+                            <!-- <div class="body__menu__item">
+                                <a href="#" class="body__menu__item__icon">
+                                    <img src="../images/food-1.png" alt="">
+                                </a>
+                                <p class="body__menu__item__title">
+                                    dessert 1
+                                </p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="body__menu__drinks">
+                        <h2>Drinks</h2>
+                        <div class="body__menu__list">
+                            <!-- <div class="body__menu__item">
+                                <a href="#" class="body__menu__item__icon">
+                                    <img src="../images/food-1.png" alt="">
+                                </a>
+                                <p class="body__menu__item__title">
+                                    drinks 1
+                                </p>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="body__menu__show-combo">
+                        <!-- 
+                        <h2>Combo</h2>
+                        <div class="show-combo__container">
+                            <div class="show-combo__left">
+                                <div class="show-combo__left__name">
+                                    Name
+                                    <p class="show-combo__text">Food 1</p>
+                                </div>
+                                <div class="show-combo__left__description">
+                                    Description
+                                    <p class="show-combo__text">Everyone</p>
+                                </div>
+                                <div class="show-combo__left__category">
+                                    Category
+                                    <p class="show-combo__text">drink</p>
+                                </div>
+                                <div class="show-combo__left__cost">
+                                    Cost
+                                    <p class="show-combo__text">10 vnd</p>
+                                </div>
+                            </div>
+                            <div class="show-combo__right">
+                                <div class="show-combo__right__list">
+                                    <div class="show-combo__right__item">
+                                        <img class="show-combo__right__item-image" src="../images/food-2.png" alt="">
+                                        <span class="show-combo__right__item__name">Food 1</span>
+                                        <span class="show-combo__right__item__quantity">x1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="show-combo__button">
+                            <div class="show-combo__delete-btn">
+                                <a href="#" class="btn primary-btn">Delete</a> 
+                            </div>
+                            <div class="show-combo__edit-btn">
+                                <a href="#" class="btn primary-btn">Edit</a> 
+                            </div>
+                            <div class="show-combo__done-btn">
+                                <a href="#" class="btn primary-btn">Done</a> 
+                            </div>
+                        </div> 
+                        -->
+                    </div>
+                    <div class="body__menu__show-dish">
+                        <!-- 
+                        <h2>dish 1</h2>
+                        <div class="show-combo__left">
+                            <div class="show-combo__left__name">
+                                Name
+                                <p class="show-combo__text">Food 1</p>
+                            </div>
+                            <div class="show-combo__left__description">
+                                Description
+                                <p class="show-combo__text">Everyone</p>
+                            </div>
+                            <div class="show-combo__left__category">
+                                    Category
+                                    <p class="show-combo__text">drink</p>
+                            </div>
+                            <div class="show-combo__left__cost">
+                                Cost
+                                <p class="show-combo__text">10 vnd</p>
+                            </div>
+                        </div>
+                        <div class="show-combo__button">
+                            <div class="show-combo__delete-btn">
+                                <a href="#" class="btn primary-btn">Delete</a> 
+                            </div>
+                            <div class="show-combo__edit-btn">
+                                <a href="#" class="btn primary-btn">Edit</a> 
+                            </div>
+                            <div class="show-combo__done-btn">
+                                <a href="#" class="btn primary-btn">Done</a> 
+                            </div>
+                        </div>
+                         -->
+                    </div>
+                    <div class="body__menu__new-combo">
+                        <!-- 
+                        <h2>New Combo</h2>
+                        <div class="new-dish__container">
+                            <div class="new-dish__left">
+                                <div class="new-dish__left__name">
+                                    Name
+                                    <input type="text" class="input-text">
+                                </div>
+                                <div class="new-dish__left__description">
+                                    Description
+                                    <input type="text" class="input-text">
+                                </div>
+                                <div class="new-dish__left__cost">
+                                    Cost
+                                    <input type="text" class="input-text">
+                                </div>
+                                <div class="new-dish__poster">
+                                    <span>Poster</span>
+                                    <label for="fileImage" class=" btn primary-btn new-dish__poster-label">Upload</label>
+                                    <input type="file" id="fileImage" accept="image/png, image/jpeg" required style='display:none' >
+                                </div>
+                            </div>
+                            <div class="new-dish__right">
+                                <div class="new-dish__right__list">
+                                    <div class="new-dish__right__item">
+                                        <img class="new-dish__right__item-image" src="../images/food-2.png" alt="">
+                                        <span class="new-dish__right__item__name">Food 1</span>
+                                        <div class="new-dish__right__item__quantity">
+                                            <img src="../images/minus.png" alt="" class="decrease__icon">
+                                            <span>0</span>
+                                            <img src="../images/add.png" alt="" class="increase__icon">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="new-dish__button">
+                            <div class="new-dish__create-btn">
+                                <a href="#" class="btn primary-btn">Create</a> 
+                            </div>
+                            <div class="new-dish__cancel-btn">
+                                <a href="#" class="btn primary-btn">Cancel</a> 
+                            </div>
+                        </div>
+                         -->
+                    </div>
+                    <div class="body__menu__new-dish">
+                        <!-- 
+                        <h2>New Dish</h2>
+                        <div class="new-dish__container">
+                            <div class="new-dish__left">
+                                <div class="new-dish__left__name">
+                                    Name
+                                    <input type="text" class="input-text">
+                                </div>
+                                <div class="new-dish__left__description">
+                                    Description
+                                    <input type="text" class="input-text">
+                                </div>
+                                <div class="new-dish__left__cost">
+                                    Cost
+                                    <input type="text" class="input-text">
+                                </div>
+                                <div class="new-dish__poster">
+                                    <span>Poster</span>
+                                    <label for="fileImage" class=" btn primary-btn new-dish__poster-label">Upload</label>
+                                    <input type="file" id="fileImage" accept="image/png, image/jpeg" required style='display:none' >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="new-dish__button">
+                            <div class="new-dish__create-btn">
+                                <a href="#" class="btn primary-btn">Create</a> 
+                            </div>
+                            <div class="new-dish__cancel-btn">
+                                <a href="#" class="btn primary-btn">Cancel</a> 
+                            </div>
+                        </div> 
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- aos script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- add custom script -->
+    <script type="module" src="../js/menu.js"></script>
+</body>
+</html>

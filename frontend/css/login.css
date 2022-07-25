@@ -109,19 +109,16 @@
     }
 }
 
-.contain {
-    color: #26643d;
-    max-width: 1600px;
-    width: 90%;
-    margin: 20px auto;
-    margin-left: 580px;
+.login_wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
 }
-.main{
-    width: 350px;
-    padding: 10px 50px 25px;
-    border: 2px solid gray;
-    border-radius: 10px;
-    float:left;
+.login_item{
+    border: 3px solid #26643b;
+    padding: 55px;
 }
 input[type=text],input[type=password]{
     width: 100%;
@@ -145,4 +142,227 @@ input[type=button]{
     border-radius: 5px;
     padding: 10px 0;
     outline:none;
+}
+.profile-img-card {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+.error_wrap{
+	margin-bottom: 20px;
+	width: 325px;
+	position: relative;
+}
+.error_wrap .error_msg{
+	font-size: 15px;
+	margin-bottom: 5px;	
+    padding: 5px;
+	color: #f74040;
+	display: none;
+}
+
+footer {
+    background: var(--lightGreen-1);
+    padding-top: 5rem;
+    padding-bottom: 2rem;
+}
+
+.footer__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.footer__logo {
+    width: 150px;
+    margin-bottom: 2rem;
+}
+
+.footer__desc {
+    font-size: 1.4rem;
+    color: var(--black-2);
+    margin-bottom: 2rem;
+}
+
+.footer__socials__title {
+    font-size: 1.8rem;
+    color: var(--black-1);
+    margin-bottom: 1rem;
+}
+
+.footer__socials li {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.footer__socials a {
+    padding: 0.5rem 0.8rem;
+    background-color: var(--white-1);
+    border: 1px solid var(--green-2);
+    border-radius: 8px;
+}
+
+.footer__socials svg {
+    width: 20px;
+    height: 25px;
+    color: var(--black-2);
+}
+
+.footer__text__title {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--black-1);
+    font-weight: 600;
+}
+
+.footer__text a {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: var(--black-2);
+    font-family: var(--font);
+    font-weight: 500;
+    line-height: 1.4em;
+}
+
+@media only screen and (min-width: 768px) {
+    footer {
+        background: var(--lightGreen-1);
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+    }
+
+    .footer__wrapper {
+        flex-direction: row;
+    }
+
+    .footer__col1 {
+        flex: 6;
+    }
+
+    .footer__col2,
+    .footer__col3 {
+        flex: 3;
+    }
+
+    .footer__desc {
+        max-width: 300px;
+        font-size:  1.8rem;
+        margin-bottom:  2.5rem;
+        line-height: 1.4em;
+    }
+
+    .footer__socials__title {
+        font-size:  2rem;
+        margin-bottom:  1.5rem;
+    }
+
+    .footer__text__title {
+        font-size:  2rem;
+        margin-bottom:  2rem;
+    }
+
+    .footer__text a {
+        font-size:  1.8rem;
+        margin-bottom:  1rem;
+    }
+}
+
+/* Why us section */
+.whyUs__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.whyUs__left {
+    text-align: center;
+}
+
+.whyUs__title {
+    font-family: var(--font);
+    font-size: 1.8rem;
+    color: var(--black-1);
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.whyUs__text {
+    font-size: 1.4rem;
+    line-height: 1.4em;
+}
+
+.whyUs__items__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.whyUs__item {
+    background: var(--lightGreen-1);
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.whyUs__item__icon {
+    max-width: 56px;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+}
+
+.whyUs__item__text {
+    font-family: var(--font);
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 1.2em;
+    color: var(--black-1);
+}
+
+@media only screen and (min-width: 768px) {
+    .whyUs__wrapper {
+        flex-direction: row;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .whyUs__left {
+        flex: 4;
+        text-align: left;
+    }
+
+    .whyUs__right {
+        flex: 3;
+    }
+
+    .whyUs__title {
+        font-size:  2.6rem;
+        margin-bottom: 2rem;
+    }
+
+    .whyUs__text {
+        font-size: 1.8rem;
+        line-height: 1.4em;
+    }
+
+    .whyUs__items__wrapper {
+        gap: 1.5rem;
+    }
+
+    .whyUs__item {
+        padding: 2rem;
+    }
+
+    .whyUs__item__icon {
+        max-width: 65px;
+        margin-bottom: 1.5rem;
+    }
+
+    .whyUs__item__text {
+        font-size: 1.8rem;
+    }
 }

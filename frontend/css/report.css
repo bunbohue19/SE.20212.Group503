@@ -68,28 +68,17 @@ td {
     padding: 0;
     font-family: sans-serif;
   }
-  .chartMenu {
-    width: 100vw;
-    height: 40px;
-    background: #1A1A1A;
-    color: rgba(255, 26, 104, 1);
-  }
-  .chartMenu p {
-    padding: 10px;
-    font-size: 20px;
-  }
   .chartCard {
     width: 100vw;
-    height: calc(100vh - 40px);
-    background: rgba(255, 26, 104, 0.2);
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 1rem;
   }
   .chartBox {
-    width: 700px;
+    width: 800px;
     padding: 20px;
     border-radius: 20px;
-    border: solid 3px rgba(255, 26, 104, 1);
+    border: solid 3px #26643b;
     background: white;
   }

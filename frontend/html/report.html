@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/globalStyle.css">
+    <link rel="stylesheet" href="../css/report.css">
+    <!-- aos css -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="nav">
+        <div class="container">
+            <div class="nav__wrapper">
+                <div class="nav__role">
+                    <div class="nav__role__img">
+                        <a href="home.html">
+                            <img src="../images/manager.png" alt="thenf">
+                        </a>
+                    </div>
+                    <p class="nav__role__text">
+                        Manager
+                    </p>
+                </div>
+                <div class="nav__search">
+                    <form action="search">
+                        <input type="text" class="nav__search__bar" placeholder="Search" required>
+                        <a href="#" class="nav__search__icon">
+                            <img src="../images/search.png" alt="thenf">
+                        </a>
+                    </form>
+                </div>
+                <div class="nav__logout">
+                    <a href="#" class="btn primary-btn">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="body">
+        <div class="container">
+            <div class="body__wrapper">
+                <div class="body__menu">
+                    <ul>
+                        <li>
+                            <a href="seat.html" class="btn primary-btn menu-btn"> Seat</a>
+                        </li>
+                        <li>
+                            <a href="menu.html" class="btn primary-btn menu-btn"> Menu</a>
+                        </li>
+                        <li>
+                            <a href="event.html" class="btn primary-btn menu-btn"> Event</a>
+                        </li>
+                        <li>
+                            <a href="membership.html" class="btn primary-btn menu-btn"> Membership</a>
+                        </li>
+                        <li>
+                            <a href="report.html" class="btn primary-btn menu-btn"> Report</a>
+                        </li>
+                        <li>
+                            <a href="bill.html" class="btn primary-btn menu-btn"> Bill</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chartCard">
+                    <div class="chartBox">
+                      <canvas id="myChart"></canvas>
+                      <input onchange="filterdata()" type="date" id="startdate" value="2022-01-01">
+                      <input onchange="filterdata()" type="date" id="enddate" value="2022-02-29">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- aos script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        const dish = ['rice', 'noodle', 'soup', 'pho', 'banh mi', 'combo 1'];
+        const datapoint = [18, 12, 6, 9, 12, 9];
+        const data = {
+        labels: dish,
+        datasets: [{
+        label: 'Revenue',
+        data: datapoint,
+        backgroundColor: [
+            'rgba(255, 26, 104, 0.2)'
+        ],
+        borderColor: [
+            'rgba(255, 26, 104, 1)'
+        ],
+        borderWidth: 1
+        }]
+    };
+
+// config 
+    const config = {
+        type: 'bar',
+        data,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+};
+
+// render init block
+const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+);
+function filterdata(){
+    const dish2 = [...dish];
+    console.log(dish2);
+    const startdate = document.getElementById('startdate');
+    const enddate = document.getElementById('enddate');
+    const indexstart = dish2.indexOf(startdate.value);
+    const indexend = dish2.indexOf(enddate.value);
+    const filterDate = dish.slice(indexstart, indexend+1);
+    myChart.config.data.labels = filterDate;
+    const datapoint2 = [13,8,5,9,10,6];
+    const filterdatapoint = datapoint2.slice(indexstart,indexend);
+    myChart.config.data.datasets[0].data = filterdatapoint;
+    myChart.update();
+}
+    </script>
+  </div>
+</html>

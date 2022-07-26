@@ -11,6 +11,36 @@ const list_order_api = "http://localhost:8081/order" // api to get orders
 const list_dishes_api = "http://localhost:8081/menu/order";//api to get dishes and combos
 const table_api = 'http://localhost:8081/table/free'; //api to get available tables
 //http://localhost:3000/OrderOutput
+
+function setRole() {
+    var navRole = document.getElementsByClassName("nav__role")[0];
+    if (role == 1) {
+        navRole.innerHTML = `
+                            <div class="nav__role__img">
+                                <a href="home.html">
+                                    <img src="../images/manager.png" alt="thenf">
+                                </a>
+                            </div>
+                            <p class="nav__manager__text">
+                                Manager
+                            </p>
+        `
+    } else if (role == 0) {
+        navRole.innerHTML = `
+                        <div class="nav__role__img">
+                            <a href="home.html">
+                                <img src="../images/staff.png" alt="thenf">
+                            </a>
+                        </div>
+                        <p class="nav__staff__text">
+                            Staff
+                        </p>
+    `
+    }
+}
+
+setRole();
+
 function get_orders(callback) {
     if(role == 1){
         fetch(list_order_api_all)

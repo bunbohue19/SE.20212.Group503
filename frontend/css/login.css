@@ -117,6 +117,8 @@
     gap: 1rem;
 }
 .login_item{
+    width: 500px;
+    border-radius: 5px;
     border: 3px solid #26643b;
     padding: 55px;
 }
@@ -145,11 +147,11 @@ input[type=button]{
 }
 .profile-img-card {
     display: block;
+    margin-bottom: 40px;
     width: 100px;
-    height: 100px;
     margin-left: auto;
     margin-right: auto;
-    width: 40%;
+    width: 30%;
 }
 .error_wrap{
 	margin-bottom: 20px;

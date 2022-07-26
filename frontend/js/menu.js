@@ -1,4 +1,5 @@
-import { role } from './role.js'
+import { getRole } from './login.js';
+var role = getRole();
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -41,7 +42,7 @@ var categoryIndex = {
 }
 
 
-var GETmenuAPI = "http://localhost:8081/menu/all";
+var GETmenuAPI = "http://localhost:8081/menu";
 var GETfoodAPI = "http://localhost:8081/menu/order";
 var menuAPI = "http://localhost:8081/menu";
 
@@ -179,17 +180,22 @@ function showDishInfor(index, category) {
                             </div>
                         </div>
                         <div class="show-combo__button">
-                            <div class="show-combo__delete-btn" onclick="handleDeleteDish(${listFood[category][index].id})">
-                                <a href="#" class="btn primary-btn">Delete</a> 
-                            </div>
-                            <div class="show-combo__edit-btn" onclick="handleEditFood('${category}', ${index})">
-                                <a href="#" class="btn primary-btn">Edit</a> 
-                            </div>
                             <div class="show-combo__done-btn" onclick="closeShowFoodInfor()">
                                 <a href="#" class="btn primary-btn">Done</a> 
                             </div>
                         </div>
     `
+    if(role==1) {
+        showComboBtn.innerHTML += 
+        `
+                            <div class="show-combo__delete-btn" onclick="handleDeleteDish('${category}', ${index})">
+                                <a href="#" class="btn primary-btn">Delete</a> 
+                            </div>
+                            <div class="show-combo__edit-btn" onclick="handleEditFood('${category}', ${index})">
+                                <a href="#" class="btn primary-btn">Edit</a> 
+                            </div>
+        `
+    }
 }
 
 function showComboInfor(index, category) {
@@ -226,17 +232,24 @@ function showComboInfor(index, category) {
                             </div>
                         </div>
                         <div class="show-combo__button">
-                            <div class="show-combo__delete-btn" onclick="handleDeleteDish(${listFood[category][index].id})">
-                                <a href="#" class="btn primary-btn">Delete</a> 
-                            </div>
-                            <div class="show-combo__edit-btn" onclick="handleEditFood('${category}', ${index})">
-                                <a href="#" class="btn primary-btn">Edit</a> 
-                            </div>
                             <div class="show-combo__done-btn" onclick="closeShowFoodInfor()">
                                 <a href="#" class="btn primary-btn">Done</a> 
                             </div>
                         </div> 
     `
+
+    const showComboBtn = document.getElementsByClassName("show-combo__button")[0];
+    if(role==1) {
+        showComboBtn.innerHTML += 
+        `
+                            <div class="show-combo__delete-btn" onclick="handleDeleteDish('${category}', ${index})">
+                                <a href="#" class="btn primary-btn">Delete</a> 
+                            </div>
+                            <div class="show-combo__edit-btn" onclick="handleEditFood('${category}', ${index})">
+                                <a href="#" class="btn primary-btn">Edit</a> 
+                            </div>
+        `
+    }
     const showComboRightList = document.getElementsByClassName("show-combo__right__list")[0];
     showComboRightList.innerHTML = ``;
     const listDish = listFood[category][index]["dishInCombo"];
@@ -335,6 +348,7 @@ function openNewCombo(category) {
                             </div>
                         </div>
     `
+    
 
     //show dish on right part
     const newDishRightList = document.getElementsByClassName("new-dish__right__list")[0];
@@ -617,20 +631,16 @@ window.handleCreateNewDish = function(category) {
     } 
 }
 
-window.handleDeleteDish = function(id) {
-    var disID = {
-        "id": id
-    }
-    console.log(disID)
+window.handleDeleteDish = function(category, index) {
+    console.log("json", listFood[category][index]);
     var options = {
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "*"
+            'Content-Type': 'application/json'
         },
-        body: JSON.stringify(disID)
+        body: JSON.stringify(listFood[category][index])
     };
-    fetch(menuAPI, options) 
+    fetch(GETmenuAPI, options) 
             .then(function(response) {
                 //response.json();
             })

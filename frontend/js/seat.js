@@ -9,6 +9,36 @@ let occupied_html = [];
 let out_of_order_html = [];
 const btn_group = $$('.btn-group');
 let tableList = [];
+import { role } from './role.js';
+
+function setRole() {
+    var navRole = document.getElementsByClassName("nav__role")[0];
+    if (role == 1) {
+        navRole.innerHTML = `
+                            <div class="nav__role__img">
+                                <a href="home.html">
+                                    <img src="../images/manager.png" alt="thenf">
+                                </a>
+                            </div>
+                            <p class="nav__manager__text">
+                                Manager
+                            </p>
+        `
+    } else if (role == 0) {
+        navRole.innerHTML = `
+                        <div class="nav__role__img">
+                            <a href="home.html">
+                                <img src="../images/staff.png" alt="thenf">
+                            </a>
+                        </div>
+                        <p class="nav__staff__text">
+                            Staff
+                        </p>
+    `
+    }
+}
+
+setRole();
 function getTables(callback) {
     fetch(tableApi)
         .then(function (response) {

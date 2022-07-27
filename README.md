@@ -9,7 +9,7 @@ The repository of group P2W
 2. How to run
     - Clone project. 
     - Open `SQL Server Management Studio` and run the query `updated_restaurant_query.sql` in folder `API`.
-    - Change SQL Server to Mixed Mode Authentication(https://www.top-password.com/knowledge/sql-server-authentication-mode.html)
+    - Change SQL Server to Mixed Mode Authentication.  [How to change SQL Server to Mixed Mode Authentication?](https://www.top-password.com/knowledge/sql-server-authentication-mode.html)
     - Direct to folder `API` then open cmd and run the command line `java -jar server_api-2.2.0.jar` to start backend.
     - Go to folder (html) `SE.20212.Group503\frontend` and run 'http-server -l -c'. Http-server will open at port 8082.
     - Open website at http://localhost:8082/html/home.html.

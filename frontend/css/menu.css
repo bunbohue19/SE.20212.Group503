@@ -90,13 +90,16 @@
     width: 300px;
     height: auto;
     min-height: 40px;
-    align-items: center;
+    /* align-items: center; */
     padding-left: 10px;
     background-color: var(--white-2);
     color: var(--black-1);
     margin-bottom: 40px;
     margin-top: 5px;
+    padding-top: 10px;
     border-radius: 10px;
+    overflow: auto;
+    line-height: 2rem;
 }
 
 .show-combo__right {

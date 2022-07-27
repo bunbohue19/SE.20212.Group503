@@ -1,5 +1,4 @@
-import { getRole } from './login.js';
-var role = getRole();
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -19,6 +18,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 import {getStorage, ref as sRef, uploadBytesResumable, getDownloadURL}
 from "https://www.gstatic.com/firebasejs/9.9.0/firebase-storage.js";
+
+
+var role = parseInt(localStorage.getItem('role'));
 
 var poster = [];
 var listFood = [];
@@ -96,7 +98,7 @@ function setRole() {
     if(role == 1) {
         navRole.innerHTML = `
                             <div class="nav__role__img">
-                                <a href="home.html">
+                                <a href="#">
                                     <img src="../images/manager.png" alt="thenf">
                                 </a>
                             </div>
@@ -107,7 +109,7 @@ function setRole() {
     } else if(role == 0) {
         navRole.innerHTML = `
                         <div class="nav__role__img">
-                            <a href="home.html">
+                            <a href="#">
                                 <img src="../images/staff.png" alt="thenf">
                             </a>
                         </div>
@@ -185,7 +187,9 @@ function showDishInfor(index, category) {
                             </div>
                         </div>
     `
-    if(role==1) {
+
+    const showComboBtn = document.getElementsByClassName("show-combo__button")[0];
+    if(role == 1) {
         showComboBtn.innerHTML += 
         `
                             <div class="show-combo__delete-btn" onclick="handleDeleteDish('${category}', ${index})">
@@ -239,7 +243,7 @@ function showComboInfor(index, category) {
     `
 
     const showComboBtn = document.getElementsByClassName("show-combo__button")[0];
-    if(role==1) {
+    if(role == 1) {
         showComboBtn.innerHTML += 
         `
                             <div class="show-combo__delete-btn" onclick="handleDeleteDish('${category}', ${index})">

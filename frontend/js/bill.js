@@ -1,4 +1,5 @@
-import {role} from './role.js';
+var role = parseInt(localStorage.getItem('role'));
+
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 const creat_btn = $(".create-btn");
@@ -14,10 +15,10 @@ const table_api = 'http://localhost:8081/table/free'; //api to get available tab
 
 function setRole() {
     var navRole = document.getElementsByClassName("nav__role")[0];
-    if (role == 1) {
+    if(role == 1) {
         navRole.innerHTML = `
                             <div class="nav__role__img">
-                                <a href="home.html">
+                                <a href="#">
                                     <img src="../images/manager.png" alt="thenf">
                                 </a>
                             </div>
@@ -25,10 +26,10 @@ function setRole() {
                                 Manager
                             </p>
         `
-    } else if (role == 0) {
+    } else if(role == 0) {
         navRole.innerHTML = `
                         <div class="nav__role__img">
-                            <a href="home.html">
+                            <a href="#">
                                 <img src="../images/staff.png" alt="thenf">
                             </a>
                         </div>

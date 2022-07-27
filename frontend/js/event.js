@@ -1,4 +1,5 @@
-import { role } from './role.js'
+var role = parseInt(localStorage.getItem('role'));
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -82,7 +83,7 @@ function setRole() {
     if(role == 1) {
         navRole.innerHTML = `
                             <div class="nav__role__img">
-                                <a href="home.html">
+                                <a href="#">
                                     <img src="../images/manager.png" alt="thenf">
                                 </a>
                             </div>
@@ -93,7 +94,7 @@ function setRole() {
     } else if(role == 0) {
         navRole.innerHTML = `
                         <div class="nav__role__img">
-                            <a href="home.html">
+                            <a href="#">
                                 <img src="../images/staff.png" alt="thenf">
                             </a>
                         </div>
@@ -162,13 +163,13 @@ window.showEventInfor = function(index) {
                                             <li class="event__popup__start">
                                                 Start time
                                                 <p class="event__popup__infor">
-                                                    ${listEvent[index].beginTime}
+                                                    ${new Date(listEvent[index].beginTime).toLocaleDateString() + '  '+ new Date(listEvent[index].beginTime).toLocaleTimeString()}
                                                 </p>
                                             </li>
                                             <li class="event__popup__end">
                                                 End time 
                                                 <p class="event__popup__infor">
-                                                    ${listEvent[index].endTime}
+                                                    ${new Date(listEvent[index].endTime).toLocaleDateString() + '  '+ new Date(listEvent[index].endTime).toLocaleTimeString()}
                                                 </p>
                                             </li>
                                         </ul>
@@ -786,7 +787,7 @@ window.handleCreateNewEvent = async function() {
             headers: {
                 'Content-Type': 'application/json'
               },
-            body: JSON.stringify(newDish)
+            body: JSON.stringify(newEvent)
         };
         fetch(PUTeventAPI, options) 
             .then(function(response) {

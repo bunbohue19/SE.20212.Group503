@@ -9,14 +9,15 @@ let occupied_html = [];
 let out_of_order_html = [];
 const btn_group = $$('.btn-group');
 let tableList = [];
-import { role } from './role.js';
+
+var role = parseInt(localStorage.getItem('role'));
 
 function setRole() {
     var navRole = document.getElementsByClassName("nav__role")[0];
-    if (role == 1) {
+    if(role == 1) {
         navRole.innerHTML = `
                             <div class="nav__role__img">
-                                <a href="home.html">
+                                <a href="#">
                                     <img src="../images/manager.png" alt="thenf">
                                 </a>
                             </div>
@@ -24,10 +25,10 @@ function setRole() {
                                 Manager
                             </p>
         `
-    } else if (role == 0) {
+    } else if(role == 0) {
         navRole.innerHTML = `
                         <div class="nav__role__img">
-                            <a href="home.html">
+                            <a href="#">
                                 <img src="../images/staff.png" alt="thenf">
                             </a>
                         </div>
@@ -37,6 +38,7 @@ function setRole() {
     `
     }
 }
+
 
 setRole();
 function getTables(callback) {

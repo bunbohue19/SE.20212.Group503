@@ -89,6 +89,8 @@
     margin-bottom: 40px;
     margin-top: 5px;
     border-radius: 10px;
+    overflow: auto;
+    line-height: 2rem;
 }
 
 .event__popup__description p {

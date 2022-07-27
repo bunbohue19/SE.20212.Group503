@@ -10,8 +10,12 @@ var bodyMainList = document.getElementsByClassName("body__main__list")[0];
 var bodyNewMembership = document.getElementsByClassName("body__new__membership")[0];
 var bodyManageRate = document.getElementsByClassName("body__manage__rate")[0];
 
+
+var role = parseInt(localStorage.getItem('role'));
+
 function start() {
     getMemberships();
+    setRole();
 }
 
 start();
@@ -27,6 +31,32 @@ function getMemberships(){
     });
 }
 
+function setRole() {
+    var navRole = document.getElementsByClassName("nav__role")[0];
+    if(role == 1) {
+        navRole.innerHTML = `
+                            <div class="nav__role__img">
+                                <a href="home.html">
+                                    <img src="../images/manager.png" alt="thenf">
+                                </a>
+                            </div>
+                            <p class="nav__manager__text">
+                                Manager
+                            </p>
+        `
+    } else if(role == 0) {
+        navRole.innerHTML = `
+                        <div class="nav__role__img">
+                            <a href="home.html">
+                                <img src="../images/staff.png" alt="thenf">
+                            </a>
+                        </div>
+                        <p class="nav__staff__text">
+                            Staff
+                        </p>
+    `
+    }
+}
 
 //show membership
 function showMemberShip() {

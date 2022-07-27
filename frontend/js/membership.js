@@ -36,7 +36,7 @@ function setRole() {
     if(role == 1) {
         navRole.innerHTML = `
                             <div class="nav__role__img">
-                                <a href="home.html">
+                                <a href="#">
                                     <img src="../images/manager.png" alt="thenf">
                                 </a>
                             </div>
@@ -47,7 +47,7 @@ function setRole() {
     } else if(role == 0) {
         navRole.innerHTML = `
                         <div class="nav__role__img">
-                            <a href="home.html">
+                            <a href="#">
                                 <img src="../images/staff.png" alt="thenf">
                             </a>
                         </div>
@@ -78,7 +78,7 @@ function showMemberShip() {
                                     </div>
                                     <div class="body__main__bar__point">
                                         <div class="separate">|</div>
-                                            ${listMember[i].rankPoint}
+                                            ${listMember[i].usablePoint}
                                         <div class="separate">|</div>
                                     </div>
                                     <div class="body__main__bar__rank">
@@ -86,7 +86,7 @@ function showMemberShip() {
                                     </div>
                                     <div class="body__main__bar__purchased">
                                         <div class="separate">|</div>
-                                        ${listMember[i].usablePoint}
+                                        ${listMember[i].rankPoint}
                                         <div class="separate"></div>
                                     </div>
                                 </div>

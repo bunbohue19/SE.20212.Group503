@@ -1,7 +1,6 @@
 package com.nhahang.controller;
 
 import java.util.List;
-
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +13,7 @@ import com.nhahang.service.CustomerService;
 
 @RestController
 public class CustomerController {
+	
 	CustomerService service= new CustomerService();
 	
 	@PutMapping("/customer")

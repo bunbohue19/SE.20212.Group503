@@ -111,9 +111,9 @@ public class MenuRepository {
 	public void updateStatus(DishModel dish)
 	{
 		String sql="update item "
-				+ "set ItemStatus=? "
+				+ "set ItemStatus= 'cancel' "
 				+ "where itemId=?";
-		GeneralConnect.update(sql, dish.getStatus(), dish.getID());
+		GeneralConnect.update(sql, dish.getID());
 	}
 	
 }

@@ -51,7 +51,8 @@ public class OrderRepository {
 	public List<TableModel> getTableInOrder(int orderId)
 	{
 		String sql = "select * from (select * from TablesInOrder where orderid= ? ) as s "
-				+ "inner join Tble on tble.tableid= s.tableid";
+				+ "inner join Tble on tble.tableid= s.tableid "
+				+ "where tableStatus= 'busy' ";
 		TableMap t= new TableMap();
 		List<TableModel> result=GeneralConnect.select(sql, t,orderId);
 		return result;

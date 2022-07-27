@@ -226,7 +226,7 @@ add_new_table_btn.onclick = function(){
         hideNewModal();
     }
     $('.new_table_btn-group.done-btn.new__done-btn').onclick = function (){
-        if (isNaN(parseInt($('#input-seats').value))){
+        if (isNaN(parseInt($('#input-seats').value)) | parseInt($('#input-seats').value) < 10 ** (($('#input-seats').value).length - 1) ){
 
             $('.invalid').classList.add('active');
 
@@ -258,7 +258,7 @@ function editTable(tb){
     showEditForm()
     $('.edit__cancel-btn').onclick = hideEditForm;
     $('.edit__done-btn').onclick = function (){
-        if (isNaN(parseInt($('#edit-seats').value))){
+        if (isNaN(parseInt($('#edit-seats').value)) | parseInt($('#edit-seats').value) < 10 ** (($('#edit-seats').value).length - 1) ) {
             $('.invalid').classList.add('active');
 
             setTimeout(function () {

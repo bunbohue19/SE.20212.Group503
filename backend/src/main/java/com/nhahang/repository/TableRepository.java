@@ -53,9 +53,9 @@ public class TableRepository {
 	public void deleteTable(TableModel table)
 	{
 		String sql="update Tble "
-				+"set tableStatus= 'cancel' "
+				+"set tableStatus= ? "
 				+" where tableId= ? ";
-	GeneralConnect.update(sql,  table.getTableID());
+	GeneralConnect.update(sql, table.getStatus(), table.getTableID());
 	}
 	
 }

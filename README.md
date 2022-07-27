@@ -12,4 +12,3 @@ The repository of group P2W
     - Direct to folder `API` then open cmd and run the command line `java -jar server_api-2.2.0.jar` to start backend.
     - Go to folder (html) `SE.20212.Group503\frontend` and run 'http-server -l -c'. Http-server will open at port 8082.
     - Open website at http://localhost:8082/html/home.html.
-    - 

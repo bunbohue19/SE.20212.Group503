@@ -365,7 +365,8 @@ function openNewCombo(category) {
             "id": listDishes[i].id,
             "quantity": 0
         }
-        newDishRightList.innerHTML +=
+        if(listDishes[i].catagory != 0){
+            newDishRightList.innerHTML +=
         `
                                     <div class="new-dish__right__item">
                                         <img class="new-dish__right__item-image" src="${listDishes[i].poster}" alt="">
@@ -377,6 +378,8 @@ function openNewCombo(category) {
                                         </div>
                                     </div>
         `
+        }
+        
     }
     
 
